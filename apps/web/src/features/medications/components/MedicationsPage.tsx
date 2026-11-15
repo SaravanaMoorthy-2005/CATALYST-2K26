@@ -1,9 +1,15 @@
 import { useState } from 'react'
-import { AppShell } from '../../../components/AppShell'
+import {
+  Pill,
+  Plus,
+  Pause,
+  Archive,
+  Sparkles,
+} from 'lucide-react'
 import { SurfaceCard } from '../../../components/SurfaceCard'
 import { StatusBadge } from '../../../components/StatusBadge'
 import { AccessibleDialog } from '../../../components/AccessibleDialog'
-import { Pill, Plus, Clock, AlertTriangle, ShieldCheck, Edit, Pause, Archive } from 'lucide-react'
+import { AppShell } from '../../../components/AppShell'
 import { useAuth } from '../../auth/hooks/useAuth'
 
 interface MedicationItem {
@@ -18,12 +24,13 @@ interface MedicationItem {
 
 export default function MedicationsPage() {
   const { currentRole } = useAuth()
+
   const [meds, setMeds] = useState<MedicationItem[]>([
     {
       id: 'med_1',
       name: 'Atorvastatin',
       dosage: '20mg Tablet',
-      instructions: 'Take 1 tablet with a full glass of water after breakfast.',
+      instructions: 'Take 1 tablet daily with a glass of water after breakfast.',
       times: ['08:00 AM'],
       status: 'active',
       stockCount: 24,
@@ -32,19 +39,28 @@ export default function MedicationsPage() {
       id: 'med_2',
       name: 'Metformin',
       dosage: '500mg Tablet',
-      instructions: 'Take with lunch to reduce gastrointestinal upset.',
+      instructions: 'Take with midday meal.',
       times: ['01:00 PM'],
       status: 'active',
-      stockCount: 8, // Low stock
+      stockCount: 8, // Triggers Refill Guardian low stock
     },
     {
       id: 'med_3',
       name: 'Lisinopril',
       dosage: '10mg Tablet',
-      instructions: 'Take once daily before bedtime. Monitor blood pressure weekly.',
+      instructions: 'Take with evening meal.',
       times: ['08:00 PM'],
       status: 'active',
-      stockCount: 45,
+      stockCount: 30,
+    },
+    {
+      id: 'med_4',
+      name: 'Hydrochlorothiazide',
+      dosage: '12.5mg Capsule',
+      instructions: 'Paused by cardiologist pending blood work.',
+      times: ['08:00 AM'],
+      status: 'paused',
+      stockCount: 15,
     },
   ])
 
@@ -79,14 +95,14 @@ export default function MedicationsPage() {
   const togglePause = (id: string) => {
     setMeds((prev) =>
       prev.map((m) =>
-        m.id === id ? { ...m, status: m.status === 'active' ? 'paused' : 'active' } : m
-      )
+        m.id === id ? { ...m, status: m.status === 'active' ? 'paused' : 'active' } : m,
+      ),
     )
   }
 
   const archiveMed = (id: string) => {
     setMeds((prev) =>
-      prev.map((m) => (m.id === id ? { ...m, status: 'archived' } : m))
+      prev.map((m) => (m.id === id ? { ...m, status: 'archived' } : m)),
     )
   }
 
@@ -94,45 +110,45 @@ export default function MedicationsPage() {
 
   return (
     <AppShell currentRole={currentRole}>
-      <div className="space-y-6">
+      <div className="space-y-7">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="font-headline text-3xl font-bold text-cc-ink">Medication Management</h1>
-            <p className="text-sm text-cc-muted mt-1">
-              Authoritative clinician-issued prescription schedules and stock monitoring.
+            <h1 className="font-headline text-3xl md:text-4xl font-extrabold text-ochre">Medication Management</h1>
+            <p className="text-sm text-ochre-warm font-semibold mt-1">
+              Authoritative clinician-issued prescription schedules and Refill Guardian stock monitoring.
             </p>
           </div>
 
           {(currentRole === 'owner' || currentRole === 'caregiver') && (
             <button
               onClick={() => setIsAddOpen(true)}
-              className="px-5 py-3 rounded-full bg-cc-ink text-white font-headline text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 shadow-sm"
+              className="sun-button px-6 py-3.5 rounded-pill text-sm font-bold flex items-center justify-center gap-2 shadow-sun-button self-start sm:self-auto"
             >
               <Plus className="w-4 h-4" />
-              <span>Add Medication</span>
+              <span>Add Prescription</span>
             </button>
           )}
         </div>
 
         {/* Tab switch */}
-        <div className="flex items-center gap-2 border-b border-cc-border pb-3">
+        <div className="flex items-center gap-2.5 border-b border-leaf/20 pb-3.5">
           <button
             onClick={() => setActiveTab('active')}
-            className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
+            className={`px-5 py-2.5 rounded-pill text-sm font-bold transition-all ${
               activeTab === 'active'
-                ? 'bg-cc-ink text-white'
-                : 'text-cc-muted hover:text-cc-ink hover:bg-black/5'
+                ? 'sun-button text-white shadow-sm'
+                : 'bg-white text-ochre border border-leaf/20 hover:bg-leaf/10'
             }`}
           >
             Active Prescriptions ({meds.filter((m) => m.status === 'active').length})
           </button>
           <button
             onClick={() => setActiveTab('paused')}
-            className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
+            className={`px-5 py-2.5 rounded-pill text-sm font-bold transition-all ${
               activeTab === 'paused'
-                ? 'bg-cc-ink text-white'
-                : 'text-cc-muted hover:text-cc-ink hover:bg-black/5'
+                ? 'sun-button text-white shadow-sm'
+                : 'bg-white text-ochre border border-leaf/20 hover:bg-leaf/10'
             }`}
           >
             Paused ({meds.filter((m) => m.status === 'paused').length})
@@ -140,40 +156,40 @@ export default function MedicationsPage() {
         </div>
 
         {/* Medication Cards List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {filteredMeds.map((med) => (
-            <SurfaceCard key={med.id} className="p-6 flex flex-col justify-between">
+            <SurfaceCard key={med.id} className="p-7 flex flex-col justify-between">
               <div>
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-10 h-10 rounded-2xl bg-cc-mist text-green-900 flex items-center justify-center font-bold">
-                      <Pill className="w-5 h-5" />
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="icon-bed w-11 h-11">
+                      <Pill className="w-6 h-6 text-emerald-700" />
                     </div>
                     <div>
-                      <h3 className="font-headline font-bold text-xl text-cc-ink">{med.name}</h3>
-                      <p className="text-sm font-medium text-cc-muted">{med.dosage}</p>
+                      <h3 className="font-headline font-bold text-xl text-ochre">{med.name}</h3>
+                      <p className="text-sm font-bold text-ochre-warm">{med.dosage}</p>
                     </div>
                   </div>
                   <StatusBadge variant={med.status} />
                 </div>
 
-                <div className="my-4 p-3 rounded-xl bg-cc-ivory border border-cc-border text-xs text-cc-ink space-y-1">
+                <div className="my-4 p-4 rounded-[18px] bg-white border border-leaf/15 text-xs text-ochre space-y-1.5 shadow-xs">
                   <p>
-                    <strong>Schedule:</strong> Daily at {med.times.join(', ')}
+                    <strong className="text-emerald-950 font-bold">Schedule:</strong> Daily at {med.times.join(', ')}
                   </p>
                   <p>
-                    <strong>Instructions:</strong> {med.instructions}
+                    <strong className="text-emerald-950 font-bold">Instructions:</strong> {med.instructions}
                   </p>
                 </div>
 
                 {/* Refill stock alert badge */}
-                <div className="flex items-center gap-2 text-xs font-semibold mb-4">
-                  <span className="text-cc-muted">Refill Supply:</span>
+                <div className="flex items-center gap-2 text-xs font-bold mb-4">
+                  <span className="text-ochre-warm">Refill Supply:</span>
                   <span
-                    className={`px-2.5 py-1 rounded-full ${
+                    className={`px-3 py-1 rounded-full border ${
                       med.stockCount <= 10
-                        ? 'bg-red-100 text-red-800 border border-red-200'
-                        : 'bg-green-100 text-green-800'
+                        ? 'bg-amber-100 text-amber-950 border-amber-300'
+                        : 'bg-emerald-100 text-emerald-950 border-emerald-300'
                     }`}
                   >
                     {med.stockCount} doses remaining {med.stockCount <= 10 && '(Low Stock Warning)'}
@@ -183,10 +199,10 @@ export default function MedicationsPage() {
 
               {/* Actions */}
               {(currentRole === 'owner' || currentRole === 'caregiver') && (
-                <div className="pt-3 border-t border-cc-border flex items-center justify-between text-xs font-semibold">
+                <div className="pt-3.5 border-t border-leaf/20 flex items-center justify-between text-xs font-bold">
                   <button
                     onClick={() => togglePause(med.id)}
-                    className="flex items-center gap-1.5 text-cc-muted hover:text-cc-ink py-1 px-2 rounded-lg hover:bg-black/5"
+                    className="flex items-center gap-1.5 text-ochre hover:text-emerald-950 py-1.5 px-3 rounded-pill hover:bg-leaf/10 transition-colors"
                   >
                     <Pause className="w-3.5 h-3.5" />
                     <span>{med.status === 'active' ? 'Pause' : 'Resume'}</span>
@@ -194,7 +210,7 @@ export default function MedicationsPage() {
 
                   <button
                     onClick={() => archiveMed(med.id)}
-                    className="flex items-center gap-1.5 text-red-600 hover:text-red-800 py-1 px-2 rounded-lg hover:bg-red-50"
+                    className="flex items-center gap-1.5 text-rose-700 hover:text-rose-900 py-1.5 px-3 rounded-pill hover:bg-rose-50 transition-colors"
                   >
                     <Archive className="w-3.5 h-3.5" />
                     <span>Archive</span>
@@ -213,7 +229,7 @@ export default function MedicationsPage() {
         >
           <form onSubmit={handleAddMedication} className="space-y-4">
             <div>
-              <label htmlFor="med-name" className="block text-sm font-semibold text-cc-ink mb-1">
+              <label htmlFor="med-name" className="block text-sm font-bold text-ochre mb-1">
                 Medication Name *
               </label>
               <input
@@ -223,12 +239,12 @@ export default function MedicationsPage() {
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
                 placeholder="e.g. Atorvastatin"
-                className="w-full h-11 px-3.5 rounded-xl border border-cc-border focus:ring-2 focus:ring-cc-ink focus:outline-none"
+                className="soft-input w-full rounded-input border bg-mint-white px-4 py-3 text-ochre placeholder:text-ochre/45 font-sans"
               />
             </div>
 
             <div>
-              <label htmlFor="med-dosage" className="block text-sm font-semibold text-cc-ink mb-1">
+              <label htmlFor="med-dosage" className="block text-sm font-bold text-ochre mb-1">
                 Dosage & Form *
               </label>
               <input
@@ -238,13 +254,13 @@ export default function MedicationsPage() {
                 value={newDosage}
                 onChange={(e) => setNewDosage(e.target.value)}
                 placeholder="e.g. 20mg Tablet"
-                className="w-full h-11 px-3.5 rounded-xl border border-cc-border focus:ring-2 focus:ring-cc-ink focus:outline-none"
+                className="soft-input w-full rounded-input border bg-mint-white px-4 py-3 text-ochre placeholder:text-ochre/45 font-sans"
               />
             </div>
 
             <div>
-              <label htmlFor="med-time" className="block text-sm font-semibold text-cc-ink mb-1">
-                Daily Administration Time *
+              <label htmlFor="med-time" className="block text-sm font-bold text-ochre mb-1">
+                Primary Daily Dose Time *
               </label>
               <input
                 id="med-time"
@@ -252,36 +268,37 @@ export default function MedicationsPage() {
                 required
                 value={newTime}
                 onChange={(e) => setNewTime(e.target.value)}
-                className="w-full h-11 px-3.5 rounded-xl border border-cc-border focus:ring-2 focus:ring-cc-ink focus:outline-none"
+                className="soft-input w-full rounded-input border bg-mint-white px-4 py-3 text-ochre font-sans"
               />
             </div>
 
             <div>
-              <label htmlFor="med-instructions" className="block text-sm font-semibold text-cc-ink mb-1">
-                Clinician Instructions (Optional)
+              <label htmlFor="med-instructions" className="block text-sm font-bold text-ochre mb-1">
+                Patient Instructions & Food Requirements
               </label>
               <textarea
                 id="med-instructions"
                 rows={3}
                 value={newInstructions}
                 onChange={(e) => setNewInstructions(e.target.value)}
-                placeholder="e.g. Take with food. Do not chew."
-                className="w-full p-3 rounded-xl border border-cc-border focus:ring-2 focus:ring-cc-ink focus:outline-none"
+                placeholder="e.g. Take with a full glass of water after meals."
+                className="soft-input w-full rounded-input border bg-mint-white px-4 py-3 text-ochre placeholder:text-ochre/45 font-sans"
               />
             </div>
 
-            <div className="pt-2 flex justify-end gap-3">
+            <div className="pt-2 flex items-center justify-end gap-3">
               <button
                 type="button"
                 onClick={() => setIsAddOpen(false)}
-                className="px-4 py-2.5 rounded-full border border-cc-border font-semibold text-sm hover:bg-black/5"
+                className="px-5 py-2.5 rounded-pill text-sm font-bold text-ochre hover:bg-stone-100 transition-colors"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-full bg-cc-ink text-white font-semibold text-sm hover:opacity-90"
+                className="sun-button px-6 py-2.5 rounded-pill text-sm font-bold text-white shadow-sun-button flex items-center gap-1.5"
               >
+                <Sparkles className="w-4 h-4" />
                 Save Medication
               </button>
             </div>
