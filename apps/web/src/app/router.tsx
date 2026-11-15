@@ -19,6 +19,7 @@ const CareShiftPage = lazy(() => import('../features/care-shift/CareShiftPage'))
 const CarePassportPage = lazy(() => import('../features/passport/CarePassportPage'))
 const CareVoicePage = lazy(() => import('../features/accessibility/CareVoicePage'))
 const NotificationsPage = lazy(() => import('../features/notifications/components/NotificationsPage'))
+const CareGuardianMockupPage = lazy(() => import('../features/alerts/CareGuardianMockupPage'))
 
 function PageLoader() {
   return (
@@ -84,6 +85,10 @@ export const router = createBrowserRouter([
       {
         path: 'notifications',
         element: <AuthGuard><Suspense fallback={<PageLoader />}><NotificationsPage /></Suspense></AuthGuard>,
+      },
+      {
+        path: 'due-alert',
+        element: <Suspense fallback={<PageLoader />}><CareGuardianMockupPage /></Suspense>,
       },
       { path: '*', element: <Navigate to="/dashboard" replace /> },
     ],

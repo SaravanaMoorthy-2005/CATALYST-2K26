@@ -136,7 +136,16 @@ export function ElderDashboard() {
               {nextDose.time}
             </span>
           </div>
-          <StatusBadge variant={nextDose.status} />
+          <div className="flex items-center gap-2">
+            <Link
+              to="/due-alert"
+              className="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300 hover:bg-amber-200 transition-colors flex items-center gap-1"
+              title="Open full-screen smartphone alert mockup"
+            >
+              <span>🔔 CareGuardian Alert</span>
+            </Link>
+            <StatusBadge variant={nextDose.status} />
+          </div>
         </div>
 
         <div className="mb-6">

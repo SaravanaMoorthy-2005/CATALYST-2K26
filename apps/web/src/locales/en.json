@@ -1,0 +1,17 @@
+{
+  "due": {
+    "heading": "Time for your medicine",
+    "medicineLine": "Diabetes medicine",
+    "timeLine": "1:00 PM · After food",
+    "pending": "Waiting for your answer",
+    "stillWaiting": "Still waiting for your answer",
+    "taken": "TAKEN",
+    "later": "REMIND ME LATER",
+    "skip": "SKIP",
+    "callFamily": "Call my family",
+    "alertNotification": "Medication Due: Diabetes medicine",
+    "snoozedMessage": "Reminder snoozed for 15 minutes.",
+    "takenMessage": "Recorded as taken at",
+    "skippedMessage": "Dose skipped. Care team informed."
+  }
+}

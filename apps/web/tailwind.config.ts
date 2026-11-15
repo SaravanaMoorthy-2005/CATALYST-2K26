@@ -18,8 +18,26 @@ const config: Config = {
           muted: '#526166',
           border: 'rgba(17,20,26,0.08)',
         },
+        cg: {
+          lightBg: '#FFFFFF',
+          lightCard: '#F4F1EC',
+          lightText: '#1A1A1A',
+          lightPrimary: '#0B5D5E',
+          lightAlert: '#B45309',
+          darkBg: '#0F1A1A',
+          darkCard: '#1B2B2B',
+          darkText: '#F5F5F5',
+          darkPrimary: '#5EC4C4',
+          darkAlert: '#F5A524',
+        },
       },
       fontFamily: {
+        atkinson: [
+          'Atkinson Hyperlegible',
+          'Noto Sans Tamil',
+          'Noto Sans Devanagari',
+          'sans-serif',
+        ],
         headline: [
           'Stack Sans Headline',
           'system-ui',

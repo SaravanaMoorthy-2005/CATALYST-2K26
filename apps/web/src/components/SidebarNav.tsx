@@ -13,9 +13,11 @@ import {
   LogOut,
   HelpCircle,
   Home,
+  BellRing,
 } from 'lucide-react'
 import { Role } from '@carecircle/shared'
 import { useAuth } from '../features/auth/hooks/useAuth'
+import { Logo } from './Logo'
 
 interface SidebarNavProps {
   currentRole: Role
@@ -40,6 +42,7 @@ export function SidebarNav({ currentRole, onCloseMobile }: SidebarNavProps) {
         { to: '/appointments', label: 'Appointments', icon: Calendar },
         { to: '/care-circle', label: 'My Care Circle', icon: Users },
         { to: '/passport', label: 'CarePassport', icon: FileText },
+        { to: '/due-alert', label: 'Medicine Due Alert', icon: BellRing },
         { to: '/assistance', label: 'Need Help', icon: HelpCircle, highlight: true },
       ]
     }
@@ -53,6 +56,7 @@ export function SidebarNav({ currentRole, onCloseMobile }: SidebarNavProps) {
         { to: '/refills', label: 'Refill Guardian', icon: RefreshCw },
         { to: '/reconciliation', label: 'DischargeSync', icon: GitCompare },
         { to: '/care-circle', label: 'Care Circle', icon: Users },
+        { to: '/due-alert', label: 'Medicine Due Alert', icon: BellRing },
         { to: '/passport', label: 'CarePassport', icon: FileText },
       ]
     }
@@ -75,17 +79,9 @@ export function SidebarNav({ currentRole, onCloseMobile }: SidebarNavProps) {
       aria-label="Main Navigation"
     >
       <div>
-        {/* Brand header */}
-        <div className="flex items-center gap-3 px-3 py-4 mb-6">
-          <div className="w-10 h-10 rounded-2xl bg-cc-ink flex items-center justify-center text-cc-lemon shadow-sm">
-            <HeartPulse className="w-6 h-6" />
-          </div>
-          <div>
-            <h1 className="font-headline font-semibold text-lg text-cc-ink leading-tight">
-              CareCircle
-            </h1>
-            <p className="text-xs text-cc-muted font-body">Connected Care</p>
-          </div>
+        {/* Brand header with Logo */}
+        <div className="px-3 py-3 mb-5">
+          <Logo showText size={42} />
         </div>
 
         {/* Navigation list */}

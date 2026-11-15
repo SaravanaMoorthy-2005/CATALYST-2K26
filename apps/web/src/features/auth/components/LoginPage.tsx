@@ -8,6 +8,7 @@ import { auth } from '../../../lib/firebase/auth'
 import { useAuth } from '../hooks/useAuth'
 import { Button } from '../../../components/ui/Button'
 import { Input } from '../../../components/ui/Input'
+import { Logo } from '../../../components/Logo'
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -82,8 +83,9 @@ export default function LoginPage() {
   return (
     <main className="min-h-screen bg-cc-ivory flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="font-headline text-4xl font-bold text-cc-ink mb-2">CareCircle</h1>
+        <div className="text-center mb-8 flex flex-col items-center">
+          <Logo size={56} className="mb-3" />
+          <h1 className="font-headline text-3xl font-bold text-cc-ink mb-1">CareCircle</h1>
           <p className="text-cc-muted">Connected Care. Confident Living.</p>
         </div>
 
