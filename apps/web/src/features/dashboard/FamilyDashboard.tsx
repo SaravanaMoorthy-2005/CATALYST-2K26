@@ -8,7 +8,7 @@ export function FamilyDashboard() {
   return (
     <div className="space-y-6">
       {/* Banner */}
-      <div className="p-6 rounded-card bg-cc-ice border border-blue-200 flex items-center justify-between gap-4">
+      <div className="p-6 rounded-card bg-cc-ice border border-blue-200 dark:border-blue-900/40 flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-2xl bg-blue-700 text-white flex items-center justify-center">
             <Heart className="w-6 h-6" />
@@ -20,7 +20,7 @@ export function FamilyDashboard() {
             </p>
           </div>
         </div>
-        <span className="hidden sm:inline-flex px-3 py-1.5 rounded-full text-xs font-semibold bg-white text-blue-900 border border-blue-100">
+        <span className="hidden sm:inline-flex px-3 py-1.5 rounded-full text-xs font-semibold bg-cc-surface text-blue-900 dark:text-blue-200 border border-blue-100 dark:border-blue-900/30">
           Family Access · View Only
         </span>
       </div>
@@ -55,7 +55,7 @@ export function FamilyDashboard() {
           ].map((entry, idx) => (
             <div
               key={idx}
-              className="p-3.5 rounded-2xl bg-white border border-cc-border flex items-center justify-between"
+              className="p-3.5 rounded-2xl bg-cc-surface border border-cc-border flex items-center justify-between"
             >
               <div>
                 <span className="font-headline font-semibold text-base text-cc-ink">
@@ -73,7 +73,7 @@ export function FamilyDashboard() {
       <SurfaceCard className="p-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="font-headline text-xl font-bold text-cc-ink flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-blue-700" />
+            <Calendar className="w-5 h-5 text-blue-700 dark:text-blue-300" />
             Upcoming Family Appointments
           </h3>
           <Link to="/appointments" className="text-xs font-semibold text-cc-ink hover:underline">
@@ -83,13 +83,13 @@ export function FamilyDashboard() {
 
         <div className="p-4 rounded-2xl bg-cc-ivory border border-cc-border flex items-center justify-between">
           <div>
-            <span className="text-xs font-bold text-blue-800 uppercase">Tomorrow, 10:30 AM</span>
+            <span className="text-xs font-bold text-blue-800 dark:text-blue-300 uppercase">Tomorrow, 10:30 AM</span>
             <h4 className="font-headline font-bold text-base text-cc-ink mt-0.5">
               Dr. Sarah Jenkins (Cardiology)
             </h4>
             <p className="text-xs text-cc-muted">St. Jude Medical Center, Suite 402</p>
           </div>
-          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-cc-border text-cc-ink">
+          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-cc-surface border border-cc-border text-cc-ink">
             Confirmed
           </span>
         </div>
@@ -103,7 +103,7 @@ export function FamilyDashboard() {
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div className="p-3.5 rounded-2xl bg-white border border-cc-border flex items-center gap-3">
+          <div className="p-3.5 rounded-2xl bg-cc-surface border border-cc-border flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-cc-lemon text-cc-ink font-bold flex items-center justify-center text-sm">
               EP
             </div>
@@ -113,8 +113,8 @@ export function FamilyDashboard() {
             </div>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-white border border-cc-border flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-cc-mist text-green-900 font-bold flex items-center justify-center text-sm">
+          <div className="p-3.5 rounded-2xl bg-cc-surface border border-cc-border flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-cc-mist text-green-900 dark:text-green-200 font-bold flex items-center justify-center text-sm">
               JD
             </div>
             <div>
@@ -123,8 +123,8 @@ export function FamilyDashboard() {
             </div>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-white border border-cc-border flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-cc-ice text-blue-900 font-bold flex items-center justify-center text-sm">
+          <div className="p-3.5 rounded-2xl bg-cc-surface border border-cc-border flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-cc-ice text-blue-900 dark:text-blue-200 font-bold flex items-center justify-center text-sm">
               SP
             </div>
             <div>

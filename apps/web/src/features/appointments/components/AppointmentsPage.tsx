@@ -126,7 +126,7 @@ export default function AppointmentsPage() {
           {(currentRole === 'owner' || currentRole === 'caregiver') && (
             <button
               onClick={() => setIsAddOpen(true)}
-              className="px-5 py-3 rounded-full bg-cc-ink text-white font-headline text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 shadow-sm"
+              className="px-5 py-3 rounded-full bg-cc-ink text-cc-ivory font-headline text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 shadow-sm"
             >
               <Plus className="w-4 h-4" />
               <span>Schedule Appointment</span>
@@ -204,7 +204,7 @@ export default function AppointmentsPage() {
                 <div className="flex items-center gap-2 self-end md:self-start">
                   <button
                     onClick={() => setSelectedAppt(appt)}
-                    className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-cc-border hover:bg-black/5 text-cc-ink"
+                    className="px-3 py-1.5 rounded-full text-xs font-semibold bg-cc-surface border border-cc-border hover:bg-black/5 dark:hover:bg-white/10 text-cc-ink"
                   >
                     Companion Checklist
                   </button>
@@ -212,7 +212,7 @@ export default function AppointmentsPage() {
                   {appt.status === 'scheduled' && (
                     <button
                       onClick={() => handleCancelAppointment(appt.id)}
-                      className="px-3 py-1.5 rounded-full text-xs font-semibold text-red-600 hover:bg-red-50"
+                      className="px-3 py-1.5 rounded-full text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-500/10"
                     >
                       Cancel
                     </button>
@@ -267,11 +267,11 @@ export default function AppointmentsPage() {
                     value={newQuestion}
                     onChange={(e) => setNewQuestion(e.target.value)}
                     placeholder="e.g. Any dietary restrictions with this dosage?"
-                    className="flex-1 h-10 px-3 rounded-xl border border-cc-border text-xs focus:ring-2 focus:ring-cc-ink focus:outline-none"
+                    className="flex-1 h-10 px-3 rounded-xl border border-cc-border bg-cc-surface text-cc-ink text-xs focus:ring-2 focus:ring-cc-ink focus:outline-none"
                   />
                   <button
                     onClick={handleAddQuestion}
-                    className="px-4 py-2 rounded-xl bg-cc-ink text-white text-xs font-semibold hover:opacity-90"
+                    className="px-4 py-2 rounded-xl bg-cc-ink text-cc-ivory text-xs font-semibold hover:opacity-90"
                   >
                     Add
                   </button>
@@ -381,13 +381,13 @@ export default function AppointmentsPage() {
               <button
                 type="button"
                 onClick={() => setIsAddOpen(false)}
-                className="px-4 py-2.5 rounded-full border border-cc-border font-semibold text-sm hover:bg-black/5"
+                className="px-4 py-2.5 rounded-full border border-cc-border text-cc-ink font-semibold text-sm hover:bg-black/5 dark:hover:bg-white/10"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-full bg-cc-ink text-white font-semibold text-sm hover:opacity-90"
+                className="px-5 py-2.5 rounded-full bg-cc-ink text-cc-ivory font-semibold text-sm hover:opacity-90"
               >
                 Save Appointment
               </button>

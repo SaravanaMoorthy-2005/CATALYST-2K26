@@ -67,7 +67,7 @@ export default function NotificationsPage() {
 
           <button
             onClick={markAllRead}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-cc-border hover:bg-black/5 text-xs font-semibold text-cc-ink"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-cc-border hover:bg-black/5 dark:hover:bg-white/10 text-xs font-semibold text-cc-ink"
           >
             <CheckCheck className="w-4 h-4" />
             <span>Mark all read</span>
@@ -79,7 +79,7 @@ export default function NotificationsPage() {
             <SurfaceCard
               key={notif.id}
               className={`p-5 transition-all ${
-                !notif.isRead ? 'border-2 border-cc-powder bg-white' : 'bg-white/80 opacity-80'
+                !notif.isRead ? 'border-2 border-cc-powder bg-cc-surface' : 'bg-cc-surface/70 opacity-80'
               }`}
             >
               <div className="flex items-start gap-3.5">

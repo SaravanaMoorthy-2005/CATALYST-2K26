@@ -107,7 +107,7 @@ export default function CareShiftPage() {
             {(currentRole === 'owner' || currentRole === 'caregiver') && (
               <button
                 onClick={() => setIsNewTaskOpen(true)}
-                className="px-5 py-2.5 rounded-full bg-cc-ink text-white font-headline text-xs font-bold flex items-center justify-center gap-2 hover:opacity-90 shadow-sm"
+                className="px-5 py-2.5 rounded-full bg-cc-ink text-cc-ivory font-headline text-xs font-bold flex items-center justify-center gap-2 hover:opacity-90 shadow-sm"
               >
                 <Plus className="w-4 h-4 text-cc-lemon" />
                 <span>Create Care Task</span>
@@ -162,7 +162,7 @@ export default function CareShiftPage() {
                   {task.status === 'pending' && (
                     <button
                       onClick={() => handleAccept(task.id)}
-                      className="px-4 py-2 rounded-full text-xs font-bold bg-cc-ink text-white hover:opacity-90"
+                      className="px-4 py-2 rounded-full text-xs font-bold bg-cc-ink text-cc-ivory hover:opacity-90"
                     >
                       Accept Task
                     </button>
@@ -171,7 +171,7 @@ export default function CareShiftPage() {
                   {task.status === 'accepted' && (
                     <button
                       onClick={() => handleComplete(task.id)}
-                      className="px-4 py-2 rounded-full text-xs font-bold bg-cc-mint text-green-900 border border-green-300 hover:bg-green-100 flex items-center gap-1.5"
+                      className="px-4 py-2 rounded-full text-xs font-bold bg-cc-mint text-green-900 dark:text-green-200 border border-green-300 dark:border-green-800 hover:bg-green-100 dark:hover:bg-green-900/40 flex items-center gap-1.5"
                     >
                       <CheckCircle2 className="w-4 h-4" />
                       <span>Mark Complete</span>
@@ -201,7 +201,7 @@ export default function CareShiftPage() {
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
                 placeholder="e.g. Prepare light dinner / check medication"
-                className="w-full h-11 px-3.5 rounded-xl border border-cc-border text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none"
+                className="w-full h-11 px-3.5 rounded-xl border border-cc-border bg-cc-surface text-cc-ink text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none"
               />
             </div>
 
@@ -213,10 +213,10 @@ export default function CareShiftPage() {
                 id="task-assignee"
                 value={newAssignee}
                 onChange={(e) => setNewAssignee(e.target.value)}
-                className="w-full h-11 px-3 rounded-xl border border-cc-border text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none bg-white"
+                className="w-full h-11 px-3 rounded-xl border border-cc-border bg-cc-surface text-cc-ink text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none"
               >
-                <option value="John Doe">John Doe (Primary Caregiver)</option>
-                <option value="Sarah Parker">Sarah Parker (Family)</option>
+                <option value="John Doe" className="bg-cc-surface text-cc-ink">John Doe (Primary Caregiver)</option>
+                <option value="Sarah Parker" className="bg-cc-surface text-cc-ink">Sarah Parker (Family)</option>
               </select>
             </div>
 
@@ -230,7 +230,7 @@ export default function CareShiftPage() {
                 value={newDue}
                 onChange={(e) => setNewDue(e.target.value)}
                 placeholder="e.g. Today at 06:00 PM"
-                className="w-full h-11 px-3.5 rounded-xl border border-cc-border text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none"
+                className="w-full h-11 px-3.5 rounded-xl border border-cc-border bg-cc-surface text-cc-ink text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none"
               />
             </div>
 
@@ -238,13 +238,13 @@ export default function CareShiftPage() {
               <button
                 type="button"
                 onClick={() => setIsNewTaskOpen(false)}
-                className="px-4 py-2.5 rounded-full border border-cc-border font-semibold text-sm hover:bg-black/5"
+                className="px-4 py-2.5 rounded-full border border-cc-border text-cc-ink font-semibold text-sm hover:bg-black/5 dark:hover:bg-white/10"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-full bg-cc-ink text-white font-semibold text-sm hover:opacity-90"
+                className="px-5 py-2.5 rounded-full bg-cc-ink text-cc-ivory font-semibold text-sm hover:opacity-90"
               >
                 Create Task
               </button>
@@ -269,10 +269,10 @@ export default function CareShiftPage() {
                 <p className="text-green-800">✓ 3 of 3 scheduled doses confirmed taken during this shift period.</p>
               </div>
 
-              <div className="p-3 rounded-xl bg-cc-ice border border-blue-200">
-                <span className="font-bold text-blue-900 block mb-1">Upcoming Responsibilities for Next Shift:</span>
-                <p className="text-blue-800">• Cardiology visit transport at 10:30 AM tomorrow.</p>
-                <p className="text-blue-800">• Pick up Metformin refill (Refill Guardian warning active).</p>
+              <div className="p-3 rounded-xl bg-cc-ice border border-blue-200 dark:border-blue-900/40">
+                <span className="font-bold text-blue-900 dark:text-blue-200 block mb-1">Upcoming Responsibilities for Next Shift:</span>
+                <p className="text-blue-800 dark:text-blue-300">• Cardiology visit transport at 10:30 AM tomorrow.</p>
+                <p className="text-blue-800 dark:text-blue-300">• Pick up Metformin refill (Refill Guardian warning active).</p>
               </div>
             </div>
 
@@ -282,7 +282,7 @@ export default function CareShiftPage() {
 
             <button
               onClick={() => setIsHandoffOpen(false)}
-              className="w-full min-h-[44px] rounded-full bg-cc-ink text-white font-semibold text-xs hover:opacity-90"
+              className="w-full min-h-[44px] rounded-full bg-cc-ink text-cc-ivory font-semibold text-xs hover:opacity-90"
             >
               Close Summary
             </button>

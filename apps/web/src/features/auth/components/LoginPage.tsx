@@ -101,7 +101,7 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => handleDemoSelect('owner')}
-                className="flex items-center justify-between p-2.5 rounded-lg bg-white border border-cc-border hover:bg-cc-lemon/30 text-left transition"
+                className="flex items-center justify-between p-2.5 rounded-lg bg-cc-surface border border-cc-border hover:bg-cc-lemon/30 text-left transition"
               >
                 <div>
                   <div className="font-semibold text-sm text-cc-ink">👵 Patient / Elder</div>
@@ -115,13 +115,13 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => handleDemoSelect('caregiver')}
-                className="flex items-center justify-between p-2.5 rounded-lg bg-white border border-cc-border hover:bg-cc-ice/30 text-left transition"
+                className="flex items-center justify-between p-2.5 rounded-lg bg-cc-surface border border-cc-border hover:bg-cc-ice/30 text-left transition"
               >
                 <div>
                   <div className="font-semibold text-sm text-cc-ink">🩺 Caretaker / Nurse</div>
                   <div className="text-xs text-cc-muted">caregiver@carecircle.app</div>
                 </div>
-                <span className="text-xs bg-cc-ice px-2 py-0.5 rounded font-semibold text-blue-900">
+                <span className="text-xs bg-cc-ice px-2 py-0.5 rounded font-semibold text-blue-900 dark:text-blue-200">
                   Caretaker
                 </span>
               </button>
@@ -129,19 +129,19 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => handleDemoSelect('family')}
-                className="flex items-center justify-between p-2.5 rounded-lg bg-white border border-cc-border hover:bg-cc-mint/40 text-left transition"
+                className="flex items-center justify-between p-2.5 rounded-lg bg-cc-surface border border-cc-border hover:bg-cc-mint/40 text-left transition"
               >
                 <div>
                   <div className="font-semibold text-sm text-cc-ink">👨‍👩‍👧 Family Member</div>
                   <div className="text-xs text-cc-muted">family@carecircle.app</div>
                 </div>
-                <span className="text-xs bg-cc-mint px-2 py-0.5 rounded font-semibold text-green-900">
+                <span className="text-xs bg-cc-mint px-2 py-0.5 rounded font-semibold text-green-900 dark:text-green-200">
                   Family
                 </span>
               </button>
             </div>
             <p className="text-[11px] text-cc-muted mt-2 text-center">
-              Universal Password: <code className="bg-white px-1.5 py-0.5 rounded font-mono border border-black/10">CareCircle2026!</code>
+              Universal Password: <code className="bg-cc-surface px-1.5 py-0.5 rounded font-mono border border-cc-border">CareCircle2026!</code>
             </p>
           </div>
 

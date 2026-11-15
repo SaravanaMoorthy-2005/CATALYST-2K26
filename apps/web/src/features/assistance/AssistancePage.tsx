@@ -71,13 +71,13 @@ export default function AssistancePage() {
 
         {/* ACTIVE REQUEST STATUS CARD */}
         {activeRequest && (
-          <SurfaceCard className="p-6 border-2 border-cc-lemon bg-white shadow-md animate-fade-in">
+          <SurfaceCard className="p-6 border-2 border-cc-lemon shadow-md animate-fade-in">
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-center gap-3">
                 <div
                   className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
                     activeRequest.status === 'acknowledged'
-                      ? 'bg-cc-mint text-green-900'
+                      ? 'bg-cc-mint text-green-900 dark:text-green-200'
                       : 'bg-cc-lemon text-cc-ink'
                   }`}
                 >
@@ -96,8 +96,8 @@ export default function AssistancePage() {
                     <span
                       className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
                         activeRequest.status === 'acknowledged'
-                          ? 'bg-cc-mint text-green-900'
-                          : 'bg-amber-100 text-amber-900'
+                          ? 'bg-cc-mint text-green-900 dark:text-green-200'
+                          : 'bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-200'
                       }`}
                     >
                       {activeRequest.status === 'acknowledged' ? 'Acknowledged' : 'Dispatched / Open'}
@@ -109,7 +109,7 @@ export default function AssistancePage() {
                   </h3>
                   <p className="text-xs text-cc-muted mt-0.5">Dispatched at {activeRequest.timestamp}</p>
                   {activeRequest.acknowledgedBy && (
-                    <p className="text-sm font-semibold text-green-800 mt-2">
+                    <p className="text-sm font-semibold text-green-800 dark:text-green-300 mt-2">
                       ✓ Acknowledged by {activeRequest.acknowledgedBy}. They are responding now.
                     </p>
                   )}
@@ -119,14 +119,14 @@ export default function AssistancePage() {
               {activeRequest.status === 'open' ? (
                 <button
                   onClick={handleSimulateAck}
-                  className="text-xs font-semibold px-3 py-1.5 rounded-full border border-cc-border hover:bg-black/5"
+                  className="text-xs font-semibold px-3 py-1.5 rounded-full border border-cc-border hover:bg-black/5 dark:hover:bg-white/10 text-cc-ink"
                 >
                   Simulate Caregiver Ack
                 </button>
               ) : (
                 <button
                   onClick={handleResolve}
-                  className="px-4 py-2 rounded-full bg-cc-ink text-white text-xs font-bold hover:opacity-90"
+                  className="px-4 py-2 rounded-full bg-cc-ink text-cc-ivory text-xs font-bold hover:opacity-90"
                 >
                   Resolve Request
                 </button>
@@ -140,10 +140,10 @@ export default function AssistancePage() {
           <button
             onClick={() => handleSendHelp('medication', 'Medication Assistance')}
             disabled={isSubmitting}
-            className="p-6 rounded-card bg-white border-2 border-cc-border hover:border-cc-ink hover:shadow-card transition-all text-left flex items-center gap-4 min-h-[96px] active:scale-[0.99]"
+            className="p-6 rounded-card bg-cc-surface border-2 border-cc-border hover:border-cc-ink hover:shadow-card transition-all text-left flex items-center gap-4 min-h-[96px] active:scale-[0.99]"
             aria-label="Request Medication Assistance"
           >
-            <div className="w-14 h-14 rounded-2xl bg-cc-mist text-green-900 flex items-center justify-center flex-shrink-0">
+            <div className="w-14 h-14 rounded-2xl bg-cc-mist text-green-900 dark:text-green-200 flex items-center justify-center flex-shrink-0">
               <Pill className="w-7 h-7" />
             </div>
             <div>
@@ -155,10 +155,10 @@ export default function AssistancePage() {
           <button
             onClick={() => handleSendHelp('appointment', 'Appointment Transport Help')}
             disabled={isSubmitting}
-            className="p-6 rounded-card bg-white border-2 border-cc-border hover:border-cc-ink hover:shadow-card transition-all text-left flex items-center gap-4 min-h-[96px] active:scale-[0.99]"
+            className="p-6 rounded-card bg-cc-surface border-2 border-cc-border hover:border-cc-ink hover:shadow-card transition-all text-left flex items-center gap-4 min-h-[96px] active:scale-[0.99]"
             aria-label="Request Appointment Transport Assistance"
           >
-            <div className="w-14 h-14 rounded-2xl bg-cc-ice text-blue-900 flex items-center justify-center flex-shrink-0">
+            <div className="w-14 h-14 rounded-2xl bg-cc-ice text-blue-900 dark:text-blue-200 flex items-center justify-center flex-shrink-0">
               <Calendar className="w-7 h-7" />
             </div>
             <div>
@@ -170,7 +170,7 @@ export default function AssistancePage() {
           <button
             onClick={() => handleSendHelp('contact', 'Contact Caregiver Prompt')}
             disabled={isSubmitting}
-            className="p-6 rounded-card bg-white border-2 border-cc-border hover:border-cc-ink hover:shadow-card transition-all text-left flex items-center gap-4 min-h-[96px] active:scale-[0.99]"
+            className="p-6 rounded-card bg-cc-surface border-2 border-cc-border hover:border-cc-ink hover:shadow-card transition-all text-left flex items-center gap-4 min-h-[96px] active:scale-[0.99]"
             aria-label="Prompt Caregiver to Call"
           >
             <div className="w-14 h-14 rounded-2xl bg-cc-lemon/60 text-cc-ink flex items-center justify-center flex-shrink-0">
@@ -185,10 +185,10 @@ export default function AssistancePage() {
           <button
             onClick={() => handleSendHelp('other', 'General Care Assistance')}
             disabled={isSubmitting}
-            className="p-6 rounded-card bg-white border-2 border-cc-border hover:border-cc-ink hover:shadow-card transition-all text-left flex items-center gap-4 min-h-[96px] active:scale-[0.99]"
+            className="p-6 rounded-card bg-cc-surface border-2 border-cc-border hover:border-cc-ink hover:shadow-card transition-all text-left flex items-center gap-4 min-h-[96px] active:scale-[0.99]"
             aria-label="Request General Care Assistance"
           >
-            <div className="w-14 h-14 rounded-2xl bg-purple-100 text-purple-900 flex items-center justify-center flex-shrink-0">
+            <div className="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-purple-950/40 text-purple-900 dark:text-purple-200 flex items-center justify-center flex-shrink-0">
               <HelpCircle className="w-7 h-7" />
             </div>
             <div>

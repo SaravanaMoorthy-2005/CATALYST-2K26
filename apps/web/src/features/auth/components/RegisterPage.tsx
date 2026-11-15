@@ -124,7 +124,7 @@ export default function RegisterPage() {
               </label>
               <select
                 id="role-select"
-                className="w-full h-12 px-4 rounded-xl border border-cc-border bg-white text-cc-ink font-body text-base focus:outline-none focus:ring-2 focus:ring-cc-ink"
+                className="w-full h-12 px-4 rounded-xl border border-cc-border bg-cc-surface text-cc-ink font-body text-base focus:outline-none focus:ring-2 focus:ring-cc-ink"
                 {...register('role')}
               >
                 <option value="owner">Elder / Care Circle Owner</option>

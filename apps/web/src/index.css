@@ -16,6 +16,7 @@
   --cc-ice: #EAF2FF;
   --cc-mint: #EDF5E8;
   --cc-surface: #FFFFFF;
+  --cc-muted: #526166;
   --cc-muted-text: #526166;
   --cc-border: rgba(17,20,26,0.08);
   --cc-shadow-card: 0 8px 28px rgba(17,20,26,0.05);
@@ -33,6 +34,7 @@
   --cc-ice: #162836;
   --cc-mint: #163628;
   --cc-surface: #1B2B2B;
+  --cc-muted: #9CA3AF;
   --cc-muted-text: #9CA3AF;
   --cc-border: rgba(255, 255, 255, 0.12);
   --cc-shadow-card: 0 8px 28px rgba(0, 0, 0, 0.40);

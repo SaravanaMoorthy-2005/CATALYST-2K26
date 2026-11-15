@@ -90,7 +90,7 @@ export default function RedeemInvitationPage() {
               <button
                 type="submit"
                 disabled={isSubmitting || code.length !== 8}
-                className="w-full min-h-[52px] rounded-full bg-cc-ink text-white font-headline text-base font-bold shadow-md hover:opacity-90 disabled:opacity-50 transition-opacity flex items-center justify-center gap-2"
+                className="w-full min-h-[52px] rounded-full bg-cc-ink text-cc-ivory font-headline text-base font-bold shadow-md hover:opacity-90 disabled:opacity-50 transition-opacity flex items-center justify-center gap-2"
               >
                 <ShieldCheck className="w-5 h-5 text-cc-lemon" />
                 <span>{isSubmitting ? 'Verifying...' : 'Verify & Join Care Circle'}</span>

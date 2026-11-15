@@ -35,7 +35,7 @@ export function AppShell({ children, currentRole = 'owner', rightPanel }: AppShe
               className="fixed inset-0 bg-black/40 backdrop-blur-sm"
               onClick={() => setMobileNavOpen(false)}
             />
-            <div className="relative z-10 w-64 bg-white h-full shadow-2xl">
+            <div className="relative z-10 w-64 bg-cc-surface h-full shadow-2xl">
               <SidebarNav
                 currentRole={currentRole}
                 onCloseMobile={() => setMobileNavOpen(false)}
@@ -73,7 +73,7 @@ export function AppShell({ children, currentRole = 'owner', rightPanel }: AppShe
 
       {/* Accessible Mobile Bottom Navigation Bar */}
       <nav
-        className="md:hidden border-t border-cc-border bg-white/95 backdrop-blur-md px-3 py-2 flex items-center justify-around z-40 sticky bottom-0"
+        className="md:hidden border-t border-cc-border bg-cc-surface/95 backdrop-blur-md px-3 py-2 flex items-center justify-around z-40 sticky bottom-0"
         aria-label="Mobile Bottom Navigation"
       >
         <NavLink

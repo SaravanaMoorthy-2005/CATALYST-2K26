@@ -79,9 +79,9 @@ export function CaregiverDashboard() {
   return (
     <div className="space-y-6">
       {/* HEADER: CareCircle Context Bar */}
-      <div className="p-4 rounded-2xl bg-white border border-cc-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+      <div className="p-4 rounded-2xl bg-cc-surface border border-cc-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-cc-mint flex items-center justify-center text-green-900 font-bold">
+          <div className="w-10 h-10 rounded-full bg-cc-mint flex items-center justify-center text-green-900 dark:text-green-200 font-bold">
             EP
           </div>
           <div>
@@ -93,7 +93,7 @@ export function CaregiverDashboard() {
         </div>
 
         <div className="flex items-center gap-2 self-end sm:self-auto">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-200">
             <span className="w-2 h-2 rounded-full bg-green-600 animate-pulse" />
             Live Sync Active
           </span>
@@ -122,10 +122,10 @@ export function CaregiverDashboard() {
                 key={item.id}
                 className={`p-4 rounded-2xl border transition-all ${
                   isAck
-                    ? 'bg-gray-50 border-gray-200 opacity-60'
+                    ? 'bg-cc-mist/30 border-cc-border opacity-60'
                     : item.urgency === 'high'
-                    ? 'bg-red-50/40 border-red-200'
-                    : 'bg-white border-cc-border'
+                    ? 'bg-red-50/40 dark:bg-red-950/20 border-red-200 dark:border-red-900/40'
+                    : 'bg-cc-surface border-cc-border'
                 }`}
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -135,7 +135,7 @@ export function CaregiverDashboard() {
                         className={`px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider ${
                           item.urgency === 'high'
                             ? 'bg-red-600 text-white'
-                            : 'bg-amber-100 text-amber-800'
+                            : 'bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-200'
                         }`}
                       >
                         {item.urgency}
@@ -153,7 +153,7 @@ export function CaregiverDashboard() {
                     {!isAck && (
                       <button
                         onClick={() => handleAcknowledge(item.id)}
-                        className="px-3 py-1.5 rounded-full text-xs font-semibold border border-cc-border hover:bg-white text-cc-ink"
+                        className="px-3 py-1.5 rounded-full text-xs font-semibold border border-cc-border hover:bg-black/5 dark:hover:bg-white/10 text-cc-ink"
                       >
                         Acknowledge
                       </button>
@@ -161,7 +161,7 @@ export function CaregiverDashboard() {
 
                     <Link
                       to={item.actionRoute}
-                      className="px-4 py-2 rounded-full text-xs font-bold bg-cc-ink text-white hover:opacity-90 flex items-center gap-1.5"
+                      className="px-4 py-2 rounded-full text-xs font-bold bg-cc-ink text-cc-ivory hover:opacity-90 flex items-center gap-1.5"
                     >
                       <span>{item.actionLabel}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -208,9 +208,9 @@ export function CaregiverDashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Link
           to="/tasks"
-          className="p-4 rounded-card bg-white border border-cc-border hover:border-cc-ink hover:shadow-card transition-all flex items-center gap-3"
+          className="p-4 rounded-card bg-cc-surface border border-cc-border hover:border-cc-ink hover:shadow-card transition-all flex items-center gap-3"
         >
-          <div className="w-10 h-10 rounded-xl bg-cc-ice text-blue-800 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-cc-ice text-blue-800 dark:text-blue-200 flex items-center justify-center">
             <Clock className="w-5 h-5" />
           </div>
           <div>
@@ -221,9 +221,9 @@ export function CaregiverDashboard() {
 
         <Link
           to="/refills"
-          className="p-4 rounded-card bg-white border border-cc-border hover:border-cc-ink hover:shadow-card transition-all flex items-center gap-3"
+          className="p-4 rounded-card bg-cc-surface border border-cc-border hover:border-cc-ink hover:shadow-card transition-all flex items-center gap-3"
         >
-          <div className="w-10 h-10 rounded-xl bg-cc-mint text-green-800 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-cc-mint text-green-800 dark:text-green-200 flex items-center justify-center">
             <RefreshCw className="w-5 h-5" />
           </div>
           <div>
@@ -234,9 +234,9 @@ export function CaregiverDashboard() {
 
         <Link
           to="/reconciliation"
-          className="p-4 rounded-card bg-white border border-cc-border hover:border-cc-ink hover:shadow-card transition-all flex items-center gap-3"
+          className="p-4 rounded-card bg-cc-surface border border-cc-border hover:border-cc-ink hover:shadow-card transition-all flex items-center gap-3"
         >
-          <div className="w-10 h-10 rounded-xl bg-cc-mist text-green-900 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-cc-mist text-green-900 dark:text-green-200 flex items-center justify-center">
             <Pill className="w-5 h-5" />
           </div>
           <div>
@@ -247,7 +247,7 @@ export function CaregiverDashboard() {
 
         <Link
           to="/care-circle"
-          className="p-4 rounded-card bg-white border border-cc-border hover:border-cc-ink hover:shadow-card transition-all flex items-center gap-3"
+          className="p-4 rounded-card bg-cc-surface border border-cc-border hover:border-cc-ink hover:shadow-card transition-all flex items-center gap-3"
         >
           <div className="w-10 h-10 rounded-xl bg-cc-lemon/50 text-cc-ink flex items-center justify-center">
             <Users className="w-5 h-5" />

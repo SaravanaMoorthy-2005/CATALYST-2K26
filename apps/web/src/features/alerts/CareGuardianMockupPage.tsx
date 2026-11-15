@@ -15,20 +15,20 @@ export default function CareGuardianMockupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-100 text-stone-900 flex flex-col items-center py-6 px-4">
+    <div className="min-h-screen bg-cc-ivory text-cc-ink flex flex-col items-center py-6 px-4">
       {/* Top Controller Bar */}
-      <div className="w-full max-w-4xl mb-6 flex flex-wrap items-center justify-between gap-4 p-4 bg-white rounded-2xl border border-stone-200 shadow-sm">
+      <div className="w-full max-w-4xl mb-6 flex flex-wrap items-center justify-between gap-4 p-4 bg-cc-surface rounded-2xl border border-cc-border shadow-sm">
         <div className="flex items-center gap-3">
           <Link
             to="/dashboard"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-stone-100 hover:bg-stone-200 text-stone-800 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-cc-mist hover:bg-black/5 dark:hover:bg-white/10 text-cc-ink transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Dashboard
           </Link>
           <div className="flex items-center gap-2">
-            <span className="font-bold text-sm text-stone-900">CareGuardian UI Mockup</span>
-            <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-teal-100 text-teal-900">
+            <span className="font-bold text-sm text-cc-ink">CareGuardian UI Mockup</span>
+            <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-teal-100 dark:bg-teal-900/40 text-teal-900 dark:text-teal-200">
               Portrait 9:19.5
             </span>
           </div>
@@ -120,8 +120,8 @@ export default function CareGuardianMockupPage() {
       )}
 
       {/* Brief Test Checklist footer */}
-      <div className="w-full max-w-4xl mt-8 p-5 bg-white rounded-2xl border border-stone-200 text-xs text-stone-700">
-        <h4 className="font-bold text-sm text-stone-900 mb-2">CareGuardian Alert Verification Checklist:</h4>
+      <div className="w-full max-w-4xl mt-8 p-5 bg-cc-surface rounded-2xl border border-cc-border text-xs text-cc-muted">
+        <h4 className="font-bold text-sm text-cc-ink mb-2">CareGuardian Alert Verification Checklist:</h4>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 list-disc list-inside">
           <li><strong>Flat 9:19.5 Screen:</strong> No gradients, phone frames, hands, shadows, or 3D tilt.</li>
           <li><strong>Language Switcher:</strong> English, தமிழ், हिन्दी pill buttons; active one filled.</li>

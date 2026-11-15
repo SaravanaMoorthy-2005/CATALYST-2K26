@@ -107,7 +107,7 @@ export default function MedicationsPage() {
           {(currentRole === 'owner' || currentRole === 'caregiver') && (
             <button
               onClick={() => setIsAddOpen(true)}
-              className="px-5 py-3 rounded-full bg-cc-ink text-white font-headline text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 shadow-sm"
+              className="px-5 py-3 rounded-full bg-cc-ink text-cc-ivory font-headline text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 shadow-sm"
             >
               <Plus className="w-4 h-4" />
               <span>Add Medication</span>
@@ -121,8 +121,8 @@ export default function MedicationsPage() {
             onClick={() => setActiveTab('active')}
             className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
               activeTab === 'active'
-                ? 'bg-cc-ink text-white'
-                : 'text-cc-muted hover:text-cc-ink hover:bg-black/5'
+                ? 'bg-cc-ink text-cc-ivory'
+                : 'text-cc-muted hover:text-cc-ink hover:bg-black/5 dark:hover:bg-white/10'
             }`}
           >
             Active Prescriptions ({meds.filter((m) => m.status === 'active').length})
@@ -131,8 +131,8 @@ export default function MedicationsPage() {
             onClick={() => setActiveTab('paused')}
             className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
               activeTab === 'paused'
-                ? 'bg-cc-ink text-white'
-                : 'text-cc-muted hover:text-cc-ink hover:bg-black/5'
+                ? 'bg-cc-ink text-cc-ivory'
+                : 'text-cc-muted hover:text-cc-ink hover:bg-black/5 dark:hover:bg-white/10'
             }`}
           >
             Paused ({meds.filter((m) => m.status === 'paused').length})
@@ -223,7 +223,7 @@ export default function MedicationsPage() {
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
                 placeholder="e.g. Atorvastatin"
-                className="w-full h-11 px-3.5 rounded-xl border border-cc-border focus:ring-2 focus:ring-cc-ink focus:outline-none"
+                className="w-full h-11 px-3.5 rounded-xl border border-cc-border bg-cc-surface text-cc-ink focus:ring-2 focus:ring-cc-ink focus:outline-none"
               />
             </div>
 
@@ -238,7 +238,7 @@ export default function MedicationsPage() {
                 value={newDosage}
                 onChange={(e) => setNewDosage(e.target.value)}
                 placeholder="e.g. 20mg Tablet"
-                className="w-full h-11 px-3.5 rounded-xl border border-cc-border focus:ring-2 focus:ring-cc-ink focus:outline-none"
+                className="w-full h-11 px-3.5 rounded-xl border border-cc-border bg-cc-surface text-cc-ink focus:ring-2 focus:ring-cc-ink focus:outline-none"
               />
             </div>
 
@@ -252,7 +252,7 @@ export default function MedicationsPage() {
                 required
                 value={newTime}
                 onChange={(e) => setNewTime(e.target.value)}
-                className="w-full h-11 px-3.5 rounded-xl border border-cc-border focus:ring-2 focus:ring-cc-ink focus:outline-none"
+                className="w-full h-11 px-3.5 rounded-xl border border-cc-border bg-cc-surface text-cc-ink focus:ring-2 focus:ring-cc-ink focus:outline-none"
               />
             </div>
 
@@ -266,7 +266,7 @@ export default function MedicationsPage() {
                 value={newInstructions}
                 onChange={(e) => setNewInstructions(e.target.value)}
                 placeholder="e.g. Take with food. Do not chew."
-                className="w-full p-3 rounded-xl border border-cc-border focus:ring-2 focus:ring-cc-ink focus:outline-none"
+                className="w-full p-3 rounded-xl border border-cc-border bg-cc-surface text-cc-ink focus:ring-2 focus:ring-cc-ink focus:outline-none"
               />
             </div>
 
@@ -274,13 +274,13 @@ export default function MedicationsPage() {
               <button
                 type="button"
                 onClick={() => setIsAddOpen(false)}
-                className="px-4 py-2.5 rounded-full border border-cc-border font-semibold text-sm hover:bg-black/5"
+                className="px-4 py-2.5 rounded-full border border-cc-border text-cc-ink font-semibold text-sm hover:bg-black/5 dark:hover:bg-white/10"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-full bg-cc-ink text-white font-semibold text-sm hover:opacity-90"
+                className="px-5 py-2.5 rounded-full bg-cc-ink text-cc-ivory font-semibold text-sm hover:opacity-90"
               >
                 Save Medication
               </button>

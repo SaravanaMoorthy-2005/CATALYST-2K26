@@ -97,7 +97,7 @@ export default function CareVoicePage() {
             className={`px-4 py-2 rounded-full text-xs font-bold transition-colors ${
               selectedLanguage === 'en'
                 ? 'bg-cc-ink text-cc-lemon'
-                : 'bg-white border border-cc-border text-cc-ink hover:bg-black/5'
+                : 'bg-cc-surface border border-cc-border text-cc-ink hover:bg-black/5 dark:hover:bg-white/10'
             }`}
           >
             English
@@ -111,7 +111,7 @@ export default function CareVoicePage() {
             className={`px-4 py-2 rounded-full text-xs font-bold transition-colors ${
               selectedLanguage === 'ta'
                 ? 'bg-cc-ink text-cc-lemon'
-                : 'bg-white border border-cc-border text-cc-ink hover:bg-black/5'
+                : 'bg-cc-surface border border-cc-border text-cc-ink hover:bg-black/5 dark:hover:bg-white/10'
             }`}
           >
             தமிழ் (Tamil)
@@ -125,7 +125,7 @@ export default function CareVoicePage() {
             className={`px-4 py-2 rounded-full text-xs font-bold transition-colors ${
               selectedLanguage === 'hi'
                 ? 'bg-cc-ink text-cc-lemon'
-                : 'bg-white border border-cc-border text-cc-ink hover:bg-black/5'
+                : 'bg-cc-surface border border-cc-border text-cc-ink hover:bg-black/5 dark:hover:bg-white/10'
             }`}
           >
             हिंदी (Hindi)
@@ -154,7 +154,7 @@ export default function CareVoicePage() {
                 <button
                   onClick={handleSpeak}
                   disabled={!speechSupported}
-                  className="px-6 py-3 rounded-full bg-cc-ink text-white font-headline text-sm font-bold flex items-center gap-2 hover:opacity-90 shadow-sm"
+                  className="px-6 py-3 rounded-full bg-cc-ink text-cc-ivory font-headline text-sm font-bold flex items-center gap-2 hover:opacity-90 shadow-sm"
                   aria-label="Start Read Aloud"
                 >
                   <Play className="w-4 h-4 text-cc-lemon fill-cc-lemon" />

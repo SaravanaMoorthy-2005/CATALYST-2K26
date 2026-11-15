@@ -27,7 +27,7 @@ export default function CarePassportPage() {
 
           <button
             onClick={handlePrintExport}
-            className="px-5 py-2.5 rounded-full bg-cc-ink text-white font-headline text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 shadow-sm self-start sm:self-auto"
+            className="px-5 py-2.5 rounded-full bg-cc-ink text-cc-ivory font-headline text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 shadow-sm self-start sm:self-auto"
           >
             <Printer className="w-4 h-4 text-cc-lemon" />
             <span>Print / Save PDF</span>
@@ -42,7 +42,7 @@ export default function CarePassportPage() {
         )}
 
         {/* PASSPORT SUMMARY DOCUMENT */}
-        <SurfaceCard className="p-8 border-2 border-cc-powder bg-white space-y-6 shadow-md print:shadow-none print:border-none">
+        <SurfaceCard className="p-8 border-2 border-cc-powder space-y-6 shadow-md print:shadow-none print:border-none">
           {/* Document Header */}
           <div className="flex items-start justify-between border-b border-cc-border pb-6">
             <div>

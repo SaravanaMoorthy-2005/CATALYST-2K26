@@ -123,12 +123,12 @@ export function ElderDashboard() {
       )}
 
       {/* DOMINANT NEXT-ACTION CARD (The core of CareDay) */}
-      <SurfaceCard className="border-2 border-cc-powder bg-white p-6 md:p-8 relative overflow-hidden">
+      <SurfaceCard className="border-2 border-cc-powder p-6 md:p-8 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 bg-cc-lemon/20 rounded-bl-full pointer-events-none" />
 
         <div className="flex items-center justify-between gap-4 mb-4">
           <div className="flex items-center gap-2">
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-cc-ice text-blue-900 uppercase tracking-wider">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-cc-ice text-blue-900 dark:text-blue-200 uppercase tracking-wider">
               Next Medication
             </span>
             <span className="text-sm text-cc-muted font-medium flex items-center gap-1">
@@ -139,7 +139,7 @@ export function ElderDashboard() {
           <div className="flex items-center gap-2">
             <Link
               to="/due-alert"
-              className="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300 hover:bg-amber-200 transition-colors flex items-center gap-1"
+              className="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-200 border border-amber-300 dark:border-amber-700 hover:bg-amber-200 transition-colors flex items-center gap-1"
               title="Open full-screen smartphone alert mockup"
             >
               <span>🔔 CareGuardian Alert</span>
@@ -167,8 +167,8 @@ export function ElderDashboard() {
             disabled={nextDose.status === 'taken'}
             className={`flex-1 min-h-[56px] px-6 py-3.5 rounded-full font-headline text-lg font-bold flex items-center justify-center gap-3 transition-all ${
               nextDose.status === 'taken'
-                ? 'bg-cc-mint text-green-900 border border-green-300 cursor-default'
-                : 'bg-cc-ink text-white hover:opacity-90 active:scale-[0.99] shadow-md'
+                ? 'bg-cc-mint text-green-900 dark:text-green-200 border border-green-300 cursor-default'
+                : 'bg-cc-ink text-cc-ivory hover:opacity-90 active:scale-[0.99] shadow-md'
             }`}
             aria-label={`Mark ${nextDose.medicationName} as Taken`}
           >
@@ -179,7 +179,7 @@ export function ElderDashboard() {
           <button
             onClick={() => handleSkipPrompt(nextDose)}
             disabled={nextDose.status === 'taken' || nextDose.status === 'skipped'}
-            className="sm:w-36 min-h-[56px] px-4 py-3.5 rounded-full border-2 border-cc-border hover:bg-black/5 font-body text-base font-semibold text-cc-ink flex items-center justify-center gap-2 transition-colors disabled:opacity-40"
+            className="sm:w-36 min-h-[56px] px-4 py-3.5 rounded-full border-2 border-cc-border hover:bg-black/5 dark:hover:bg-white/10 font-body text-base font-semibold text-cc-ink flex items-center justify-center gap-2 transition-colors disabled:opacity-40"
             aria-label={`Skip or report issue for ${nextDose.medicationName}`}
           >
             <XCircle className="w-5 h-5 text-cc-muted" />
@@ -202,10 +202,10 @@ export function ElderDashboard() {
           {doses.map((dose) => (
             <div
               key={dose.id}
-              className="relative pl-10 flex flex-col sm:flex-row sm:items-center justify-between p-3.5 rounded-2xl bg-white border border-cc-border hover:shadow-sm transition-shadow gap-2"
+              className="relative pl-10 flex flex-col sm:flex-row sm:items-center justify-between p-3.5 rounded-2xl bg-cc-surface border border-cc-border hover:shadow-sm transition-shadow gap-2"
             >
               <div
-                className={`absolute left-2.5 top-5 w-3.5 h-3.5 rounded-full border-2 border-white ${
+                className={`absolute left-2.5 top-5 w-3.5 h-3.5 rounded-full border-2 border-cc-surface ${
                   dose.status === 'taken'
                     ? 'bg-green-600'
                     : dose.status === 'due'
@@ -229,7 +229,7 @@ export function ElderDashboard() {
                 {dose.status !== 'taken' && dose.status !== 'skipped' && (
                   <button
                     onClick={() => handleMarkTaken(dose.id)}
-                    className="px-3 py-1.5 rounded-full text-xs font-semibold bg-cc-ink text-white hover:opacity-90"
+                    className="px-3 py-1.5 rounded-full text-xs font-semibold bg-cc-ink text-cc-ivory hover:opacity-90"
                   >
                     Take
                   </button>
@@ -244,7 +244,7 @@ export function ElderDashboard() {
       <SurfaceCard className="p-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="font-headline text-xl font-bold text-cc-ink flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-blue-700" />
+            <Calendar className="w-5 h-5 text-blue-700 dark:text-blue-300" />
             Upcoming Appointments
           </h3>
           <Link
@@ -256,42 +256,42 @@ export function ElderDashboard() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-4 rounded-2xl bg-cc-ice border border-blue-100 flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-blue-700 shadow-sm flex-shrink-0">
+          <div className="p-4 rounded-2xl bg-cc-ice border border-blue-100 dark:border-blue-900/30 flex items-start gap-3">
+            <div className="w-10 h-10 rounded-xl bg-cc-surface flex items-center justify-center text-blue-700 dark:text-blue-300 shadow-sm flex-shrink-0">
               <Calendar className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-xs font-semibold text-blue-800 uppercase tracking-wider">
+              <span className="text-xs font-semibold text-blue-800 dark:text-blue-200 uppercase tracking-wider">
                 Tomorrow, 10:30 AM
               </span>
               <h4 className="font-headline font-bold text-base text-cc-ink mt-0.5">
                 Dr. Sarah Jenkins
               </h4>
               <p className="text-xs text-cc-muted">Cardiology Follow-Up</p>
-              <p className="text-xs text-blue-900 mt-2 font-medium">St. Jude Medical Center, Suite 402</p>
+              <p className="text-xs text-blue-900 dark:text-blue-200 mt-2 font-medium">St. Jude Medical Center, Suite 402</p>
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl bg-cc-mist border border-green-100 flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-green-800 shadow-sm flex-shrink-0">
+          <div className="p-4 rounded-2xl bg-cc-mist border border-green-100 dark:border-green-900/30 flex items-start gap-3">
+            <div className="w-10 h-10 rounded-xl bg-cc-surface flex items-center justify-center text-green-800 dark:text-green-300 shadow-sm flex-shrink-0">
               <Calendar className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-xs font-semibold text-green-900 uppercase tracking-wider">
+              <span className="text-xs font-semibold text-green-900 dark:text-green-200 uppercase tracking-wider">
                 Thursday, 02:00 PM
               </span>
               <h4 className="font-headline font-bold text-base text-cc-ink mt-0.5">
                 Dr. Robert Chen
               </h4>
               <p className="text-xs text-cc-muted">Routine Geriatric Assessment</p>
-              <p className="text-xs text-green-900 mt-2 font-medium">Metro Health Clinic</p>
+              <p className="text-xs text-green-900 dark:text-green-200 mt-2 font-medium">Metro Health Clinic</p>
             </div>
           </div>
         </div>
       </SurfaceCard>
 
       {/* ONE-TAP NEED HELP BANNER */}
-      <div className="p-6 rounded-card bg-cc-lemon/30 border-2 border-cc-lemon flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="p-6 rounded-card bg-cc-lemon/30 dark:bg-yellow-950/20 border-2 border-cc-lemon flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-full bg-cc-ink text-cc-lemon flex items-center justify-center flex-shrink-0">
             <HelpCircle className="w-7 h-7" />
@@ -306,7 +306,7 @@ export function ElderDashboard() {
 
         <Link
           to="/assistance"
-          className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-cc-ink text-white font-headline text-base font-bold shadow-md hover:opacity-90 text-center flex-shrink-0"
+          className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-cc-ink text-cc-ivory font-headline text-base font-bold shadow-md hover:opacity-90 text-center flex-shrink-0"
         >
           Open Need Help
         </Link>
@@ -319,8 +319,8 @@ export function ElderDashboard() {
         title="SafeDose Shield Protection"
       >
         <div className="space-y-4">
-          <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 flex items-start gap-3">
-            <AlertTriangle className="w-6 h-6 text-amber-700 flex-shrink-0 mt-0.5" />
+          <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-200 flex items-start gap-3">
+            <AlertTriangle className="w-6 h-6 text-amber-700 dark:text-amber-400 flex-shrink-0 mt-0.5" />
             <div>
               <h4 className="font-headline font-bold text-base">Dose Already Confirmed</h4>
               <p className="text-sm mt-1">
@@ -337,7 +337,7 @@ export function ElderDashboard() {
 
           <button
             onClick={() => setSafeDoseModal({ isOpen: false })}
-            className="w-full min-h-[48px] rounded-full bg-cc-ink text-white font-semibold"
+            className="w-full min-h-[48px] rounded-full bg-cc-ink text-cc-ivory font-semibold"
           >
             I Understand
           </button>

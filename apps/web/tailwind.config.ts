@@ -7,16 +7,16 @@ const config: Config = {
     extend: {
       colors: {
         cc: {
-          ink: '#11141A',
-          ivory: '#F9F5F1',
-          lemon: '#FFF25C',
-          powder: '#B2D8DD',
-          mist: '#EAF2ED',
-          ice: '#EAF2FF',
-          mint: '#EDF5E8',
-          surface: '#FFFFFF',
-          muted: '#526166',
-          border: 'rgba(17,20,26,0.08)',
+          ink: 'var(--cc-ink)',
+          ivory: 'var(--cc-ivory)',
+          lemon: 'var(--cc-lemon)',
+          powder: 'var(--cc-powder)',
+          mist: 'var(--cc-mist)',
+          ice: 'var(--cc-ice)',
+          mint: 'var(--cc-mint)',
+          surface: 'var(--cc-surface)',
+          muted: 'var(--cc-muted)',
+          border: 'var(--cc-border)',
         },
         cg: {
           lightBg: '#FFFFFF',

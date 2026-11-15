@@ -8,14 +8,21 @@ describe('WCAG 2.2 AA Accessibility & Visual Tokens Verification', () => {
   })
 
   it('verifies color tokens maintain WCAG AA minimum contrast ratio (>= 4.5:1 for normal text)', () => {
-    // #11141A (cc-ink) on #F9F5F1 (cc-ivory) contrast ratio is ~16.5:1
-    // Far exceeds the 4.5:1 WCAG AA requirement
+    // Light mode: #11141A (cc-ink) on #F9F5F1 (cc-ivory) contrast ratio is ~16.5:1
     const inkLuminance = 0.015
     const ivoryLuminance = 0.94
-    const contrastRatio = (ivoryLuminance + 0.05) / (inkLuminance + 0.05)
+    const lightContrastRatio = (ivoryLuminance + 0.05) / (inkLuminance + 0.05)
 
-    expect(contrastRatio).toBeGreaterThan(4.5)
-    expect(contrastRatio).toBeGreaterThan(7.0) // Also passes AAA!
+    expect(lightContrastRatio).toBeGreaterThan(4.5)
+    expect(lightContrastRatio).toBeGreaterThan(7.0) // Passes AAA
+
+    // Dark mode: #F5F5F5 (cc-ink) on #0F1A1A (cc-ivory) contrast ratio is ~15.5:1
+    const darkInkLuminance = 0.91
+    const darkBgLuminance = 0.012
+    const darkContrastRatio = (darkInkLuminance + 0.05) / (darkBgLuminance + 0.05)
+
+    expect(darkContrastRatio).toBeGreaterThan(4.5)
+    expect(darkContrastRatio).toBeGreaterThan(7.0) // Passes AAA
   })
 
   it('verifies non-text status indicators do not rely on color alone', () => {

@@ -99,8 +99,8 @@ export function SidebarNav({ currentRole, onCloseMobile }: SidebarNavProps) {
                         item.highlight
                           ? 'bg-cc-lemon text-cc-ink font-semibold shadow-sm hover:opacity-90'
                           : isActive
-                          ? 'bg-cc-ink text-white font-semibold shadow-sm'
-                          : 'text-cc-ink hover:bg-white/80'
+                          ? 'bg-cc-ink text-cc-ivory font-semibold shadow-sm'
+                          : 'text-cc-ink hover:bg-black/5 dark:hover:bg-white/10'
                       }`
                     }
                   >
@@ -130,7 +130,7 @@ export function SidebarNav({ currentRole, onCloseMobile }: SidebarNavProps) {
 
         <button
           onClick={handleSignOut}
-          className="w-full flex items-center gap-3 px-4 py-2.5 rounded-full text-sm font-medium text-red-700 hover:bg-red-50 transition-colors"
+          className="w-full flex items-center gap-3 px-4 py-2.5 rounded-full text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-500/10 transition-colors"
           aria-label="Sign Out"
         >
           <LogOut className="w-4 h-4" />

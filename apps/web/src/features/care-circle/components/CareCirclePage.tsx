@@ -147,7 +147,7 @@ export default function CareCirclePage() {
                   setGeneratedInviteResult(null)
                   setIsInviteOpen(true)
                 }}
-                className="px-5 py-2.5 rounded-full bg-cc-ink text-white font-headline text-xs font-bold flex items-center justify-center gap-2 hover:opacity-90 shadow-sm"
+                className="px-5 py-2.5 rounded-full bg-cc-ink text-cc-ivory font-headline text-xs font-bold flex items-center justify-center gap-2 hover:opacity-90 shadow-sm"
               >
                 <UserPlus className="w-4 h-4 text-cc-lemon" />
                 <span>Invite Member</span>
@@ -167,8 +167,8 @@ export default function CareCirclePage() {
                       member.role === 'owner'
                         ? 'bg-cc-lemon text-cc-ink'
                         : member.role === 'caregiver'
-                        ? 'bg-cc-mint text-green-900'
-                        : 'bg-cc-ice text-blue-900'
+                        ? 'bg-cc-mint text-green-900 dark:text-green-200'
+                        : 'bg-cc-ice text-blue-900 dark:text-blue-200'
                     }`}
                   >
                     {member.name.charAt(0).toUpperCase()}
@@ -180,10 +180,10 @@ export default function CareCirclePage() {
                       <span
                         className={`px-2.5 py-0.5 rounded-full text-xs font-semibold capitalize ${
                           member.role === 'owner'
-                            ? 'bg-cc-ink text-white'
+                            ? 'bg-cc-ink text-cc-ivory'
                             : member.role === 'caregiver'
-                            ? 'bg-cc-mint text-green-900'
-                            : 'bg-cc-ice text-blue-900'
+                            ? 'bg-cc-mint text-green-900 dark:text-green-200'
+                            : 'bg-cc-ice text-blue-900 dark:text-blue-200'
                         }`}
                       >
                         {member.role}
@@ -263,7 +263,7 @@ export default function CareCirclePage() {
 
               <button
                 onClick={() => setIsInviteOpen(false)}
-                className="w-full min-h-[48px] rounded-full bg-cc-ink text-white font-semibold text-sm hover:opacity-90"
+                className="w-full min-h-[48px] rounded-full bg-cc-ink text-cc-ivory font-semibold text-sm hover:opacity-90"
               >
                 Done
               </button>
@@ -285,7 +285,7 @@ export default function CareCirclePage() {
                   value={inviteEmail}
                   onChange={(e) => setInviteEmail(e.target.value)}
                   placeholder="caregiver@family.org"
-                  className="w-full h-11 px-3.5 rounded-xl border border-cc-border text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none"
+                  className="w-full h-11 px-3.5 rounded-xl border border-cc-border bg-cc-surface text-cc-ink text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none"
                 />
               </div>
 
@@ -297,10 +297,10 @@ export default function CareCirclePage() {
                   id="invite-role"
                   value={inviteRole}
                   onChange={(e) => setInviteRole(e.target.value as 'caregiver' | 'family')}
-                  className="w-full h-11 px-3 rounded-xl border border-cc-border text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none bg-white"
+                  className="w-full h-11 px-3 rounded-xl border border-cc-border bg-cc-surface text-cc-ink text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none"
                 >
-                  <option value="caregiver">Caregiver (Full editing, alert ack & refill access)</option>
-                  <option value="family">Family Member (Adherence view & updates)</option>
+                  <option value="caregiver" className="bg-cc-surface text-cc-ink">Caregiver (Full editing, alert ack & refill access)</option>
+                  <option value="family" className="bg-cc-surface text-cc-ink">Family Member (Adherence view & updates)</option>
                 </select>
               </div>
 
@@ -308,13 +308,13 @@ export default function CareCirclePage() {
                 <button
                   type="button"
                   onClick={() => setIsInviteOpen(false)}
-                  className="px-4 py-2.5 rounded-full border border-cc-border font-semibold text-sm hover:bg-black/5"
+                  className="px-4 py-2.5 rounded-full border border-cc-border text-cc-ink font-semibold text-sm hover:bg-black/5 dark:hover:bg-white/10"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-full bg-cc-ink text-white font-semibold text-sm hover:opacity-90"
+                  className="px-5 py-2.5 rounded-full bg-cc-ink text-cc-ivory font-semibold text-sm hover:opacity-90"
                 >
                   Generate Invitation
                 </button>

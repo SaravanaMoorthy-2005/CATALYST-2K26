@@ -147,7 +147,7 @@ export default function DischargeSyncPage() {
                       onClick={() =>
                         setConfirmModal({ isOpen: true, proposalId: proposal.id, action: 'approve' })
                       }
-                      className="px-5 py-2 rounded-full bg-cc-ink text-white text-xs font-bold hover:opacity-90 shadow-sm"
+                      className="px-5 py-2 rounded-full bg-cc-ink text-cc-ivory text-xs font-bold hover:opacity-90 shadow-sm"
                     >
                       Approve & Reconcile
                     </button>
@@ -233,14 +233,16 @@ export default function DischargeSyncPage() {
             <div className="flex justify-end gap-3 pt-3">
               <button
                 onClick={() => setConfirmModal({ isOpen: false })}
-                className="px-4 py-2.5 rounded-full border border-cc-border text-sm font-semibold hover:bg-black/5"
+                className="px-4 py-2.5 rounded-full border border-cc-border text-sm font-semibold hover:bg-black/5 dark:hover:bg-white/10 text-cc-ink"
               >
                 Cancel
               </button>
               <button
                 onClick={handleDecision}
-                className={`px-5 py-2.5 rounded-full font-semibold text-sm text-white ${
-                  confirmModal.action === 'approve' ? 'bg-cc-ink hover:opacity-90' : 'bg-red-700 hover:bg-red-800'
+                className={`px-5 py-2.5 rounded-full font-semibold text-sm ${
+                  confirmModal.action === 'approve'
+                    ? 'bg-cc-ink text-cc-ivory hover:opacity-90'
+                    : 'bg-red-700 text-white hover:bg-red-800'
                 }`}
               >
                 {confirmModal.action === 'approve' ? 'Authorize & Apply' : 'Confirm Rejection'}

@@ -148,7 +148,7 @@ export default function RefillsPage() {
           {(currentRole === 'owner' || currentRole === 'caregiver') && (
             <button
               onClick={() => setIsRestockOpen(true)}
-              className="px-5 py-2.5 rounded-full bg-cc-ink text-white font-headline text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 shadow-sm"
+              className="px-5 py-2.5 rounded-full bg-cc-ink text-cc-ivory font-headline text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 shadow-sm"
             >
               <Plus className="w-4 h-4 text-cc-lemon" />
               <span>Record Restock</span>
@@ -157,8 +157,8 @@ export default function RefillsPage() {
         </div>
 
         {/* Clinical Disclaimer on Inventory Estimation */}
-        <div className="p-4 rounded-card bg-blue-50 border border-blue-200 text-blue-950 text-xs flex items-start gap-3">
-          <ShieldCheck className="w-5 h-5 text-blue-700 flex-shrink-0 mt-0.5" />
+        <div className="p-4 rounded-card bg-cc-ice border border-blue-200 dark:border-blue-900/40 text-blue-950 dark:text-blue-200 text-xs flex items-start gap-3">
+          <ShieldCheck className="w-5 h-5 text-blue-700 dark:text-blue-300 flex-shrink-0 mt-0.5" />
           <div>
             <strong>Automated Approximation Notice:</strong> All supply counts are estimates calculated from opening stock, confirmed administrations, and restock records. Always verify physical supply before making clinical or purchasing decisions.
           </div>
@@ -262,10 +262,10 @@ export default function RefillsPage() {
                 id="restock-med"
                 value={selectedMedId}
                 onChange={(e) => setSelectedMedId(e.target.value)}
-                className="w-full h-11 px-3.5 rounded-xl border border-cc-border text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none bg-white"
+                className="w-full h-11 px-3.5 rounded-xl border border-cc-border bg-cc-surface text-cc-ink text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none"
               >
                 {inventory.map((m) => (
-                  <option key={m.medicationId} value={m.medicationId}>
+                  <option key={m.medicationId} value={m.medicationId} className="bg-cc-surface text-cc-ink">
                     {m.name} ({m.dosage}) — Current: {m.estimatedStock} {m.unit}
                   </option>
                 ))}
@@ -283,7 +283,7 @@ export default function RefillsPage() {
                 required
                 value={restockQty}
                 onChange={(e) => setRestockQty(e.target.value)}
-                className="w-full h-11 px-3.5 rounded-xl border border-cc-border text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none"
+                className="w-full h-11 px-3.5 rounded-xl border border-cc-border bg-cc-surface text-cc-ink text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none"
               />
             </div>
 
@@ -297,7 +297,7 @@ export default function RefillsPage() {
                 value={restockNotes}
                 onChange={(e) => setRestockNotes(e.target.value)}
                 placeholder="e.g. Walgreens RX #98421 refill picked up"
-                className="w-full h-11 px-3.5 rounded-xl border border-cc-border text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none"
+                className="w-full h-11 px-3.5 rounded-xl border border-cc-border bg-cc-surface text-cc-ink text-sm focus:ring-2 focus:ring-cc-ink focus:outline-none"
               />
             </div>
 
@@ -305,13 +305,13 @@ export default function RefillsPage() {
               <button
                 type="button"
                 onClick={() => setIsRestockOpen(false)}
-                className="px-4 py-2.5 rounded-full border border-cc-border font-semibold text-sm hover:bg-black/5"
+                className="px-4 py-2.5 rounded-full border border-cc-border text-cc-ink font-semibold text-sm hover:bg-black/5 dark:hover:bg-white/10"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-full bg-cc-ink text-white font-semibold text-sm hover:opacity-90"
+                className="px-5 py-2.5 rounded-full bg-cc-ink text-cc-ivory font-semibold text-sm hover:opacity-90"
               >
                 Save Restock
               </button>
