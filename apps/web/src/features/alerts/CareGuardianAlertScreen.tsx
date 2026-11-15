@@ -110,14 +110,14 @@ export function CareGuardianAlertScreen({
   const colors = {
     bg: isDark ? '#0F1A1A' : '#FFFFFF',
     card: isDark ? '#1B2B2B' : '#F4F1EC',
-    text: isDark ? '#F5F5F5' : '#1A1A1A',
+    text: isDark ? '#FFFFFF' : '#000000',
     primary: isDark ? '#5EC4C4' : '#0B5D5E',
     primaryText: isDark ? '#0F1A1A' : '#FFFFFF',
     alert: isDark ? '#F5A524' : '#B45309',
     secondaryBorder: isDark ? '#5EC4C4' : '#0B5D5E',
     secondaryText: isDark ? '#5EC4C4' : '#0B5D5E',
-    tertiaryBorder: isDark ? '#737373' : '#6B7280',
-    tertiaryText: isDark ? '#F5F5F5' : '#1A1A1A',
+    tertiaryBorder: isDark ? '#FFFFFF' : '#6B7280',
+    tertiaryText: isDark ? '#FFFFFF' : '#000000',
   }
 
   // Dynamic Font family per language

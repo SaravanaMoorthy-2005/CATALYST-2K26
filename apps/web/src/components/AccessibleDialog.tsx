@@ -134,7 +134,7 @@ export function AccessibleDialog({
       >
         <div
           className={cn(
-            'pointer-events-auto w-full max-w-lg rounded-dialog bg-cc-surface shadow-elevated',
+            'pointer-events-auto w-full max-w-lg rounded-dialog bg-cc-surface dark:bg-[#1B2B2B] shadow-elevated border border-cc-border dark:border-white/50 text-cc-ink dark:text-white',
             'outline-none',
             className,
           )}

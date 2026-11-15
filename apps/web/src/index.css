@@ -8,7 +8,7 @@
    Design Tokens
 ─────────────────────────────── */
 :root {
-  --cc-ink: #11141A;
+  --cc-ink: #000000;
   --cc-ivory: #F9F5F1;
   --cc-lemon: #FFF25C;
   --cc-powder: #B2D8DD;
@@ -16,17 +16,17 @@
   --cc-ice: #EAF2FF;
   --cc-mint: #EDF5E8;
   --cc-surface: #FFFFFF;
-  --cc-muted: #526166;
-  --cc-muted-text: #526166;
-  --cc-border: rgba(17,20,26,0.08);
-  --cc-shadow-card: 0 8px 28px rgba(17,20,26,0.05);
-  --cc-shadow-elevated: 0 16px 48px rgba(17,20,26,0.10);
+  --cc-muted: #374151;
+  --cc-muted-text: #374151;
+  --cc-border: rgba(0, 0, 0, 0.12);
+  --cc-shadow-card: 0 8px 28px rgba(0, 0, 0, 0.05);
+  --cc-shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.10);
   --cc-radius-card: 22px;
   --cc-radius-pill: 999px;
 }
 
 .dark {
-  --cc-ink: #F5F5F5;
+  --cc-ink: #FFFFFF;
   --cc-ivory: #0F1A1A;
   --cc-lemon: #FFF25C;
   --cc-powder: #5EC4C4;
@@ -34,23 +34,118 @@
   --cc-ice: #162836;
   --cc-mint: #163628;
   --cc-surface: #1B2B2B;
-  --cc-muted: #D1D5DB;
-  --cc-muted-text: #D1D5DB;
+  --cc-muted: #E5E7EB;
+  --cc-muted-text: #E5E7EB;
   --cc-border: rgba(255, 255, 255, 0.45);
   --cc-shadow-card: 0 8px 28px rgba(0, 0, 0, 0.40);
   --cc-shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.60);
 }
 
-/* Explicit global dark theme overrides to ensure all areas, especially <main>, switch completely to dark */
+/* ─────────────────────────────────────────────────────────────
+   LIGHT THEME: Black text across the board
+   ───────────────────────────────────────────────────────────── */
+html:not(.dark),
+html:not(.dark) body,
+html:not(.dark) #root,
+html:not(.dark) main {
+  background-color: #F9F5F1;
+  color: #000000 !important;
+}
+
+html:not(.dark) h1,
+html:not(.dark) h2,
+html:not(.dark) h3,
+html:not(.dark) h4,
+html:not(.dark) h5,
+html:not(.dark) h6,
+html:not(.dark) p,
+html:not(.dark) label,
+html:not(.dark) li,
+html:not(.dark) dt,
+html:not(.dark) dd,
+html:not(.dark) td,
+html:not(.dark) th,
+html:not(.dark) strong,
+html:not(.dark) .text-cc-ink,
+html:not(.dark) [class*="text-cc-ink"] {
+  color: #000000 !important;
+}
+
+/* In light theme, buttons with black background have crisp white text */
+html:not(.dark) .bg-cc-ink,
+html:not(.dark) .bg-cc-ink *,
+html:not(.dark) .text-cc-ivory {
+  color: #FFFFFF !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   DARK THEME: Pure White text across the board
+   ───────────────────────────────────────────────────────────── */
 html.dark,
 html.dark body,
 html.dark #root,
 html.dark main {
   background-color: #0F1A1A !important;
-  color: #F5F5F5 !important;
+  color: #FFFFFF !important;
 }
 
-/* White outline / border for text in dark mode */
+/* Every text element turns to white in dark mode */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6,
+.dark p,
+.dark label,
+.dark li,
+.dark dt,
+.dark dd,
+.dark td,
+.dark th,
+.dark strong,
+.dark b,
+.dark a,
+.dark .text-cc-ink,
+.dark [class*="text-cc-ink"] {
+  color: #FFFFFF !important;
+}
+
+/* Secondary muted text turns light whitish-gray for smooth visual hierarchy */
+.dark .text-cc-muted,
+.dark [class*="text-cc-muted"] {
+  color: #E5E7EB !important;
+}
+
+/* Form controls in dark mode */
+.dark input:not([type="checkbox"]):not([type="radio"]),
+.dark textarea,
+.dark select {
+  background-color: #1B2B2B !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+}
+
+/* Primary dark action buttons (slate teal with crisp white text & white outline) */
+.dark .bg-cc-ink {
+  background-color: #233535 !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.65) !important;
+}
+.dark .bg-cc-ink * {
+  color: #FFFFFF !important;
+}
+
+/* Bright yellow buttons & badges (bg-cc-lemon) MUST retain pitch black text for WCAG AAA contrast */
+.dark .bg-cc-lemon,
+.dark .bg-cc-lemon *,
+.dark [class*="bg-cc-lemon"],
+.dark [class*="bg-cc-lemon"] * {
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+/* White outline / border for headings in dark mode */
 .dark h1,
 .dark h2,
 .dark h3,
@@ -66,6 +161,7 @@ html.dark main {
 
 /* White borders on all cards, inputs, buttons, and text containers in dark mode */
 .dark .rounded-card,
+.dark .rounded-dialog,
 .dark .rounded-2xl,
 .dark .rounded-xl,
 .dark .border,

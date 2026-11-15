@@ -18,7 +18,7 @@ export function AppShell({ children, currentRole = 'owner', rightPanel }: AppShe
 
   return (
     <div
-      className={`min-h-screen flex flex-col bg-cc-ivory dark:bg-[#0F1A1A] text-cc-ink dark:text-[#F5F5F5] transition-colors duration-200 ${
+      className={`min-h-screen flex flex-col bg-cc-ivory dark:bg-[#0F1A1A] text-cc-ink dark:text-white transition-colors duration-200 ${
         isLargeText ? 'text-lg' : 'text-base'
       }`}
     >
@@ -54,7 +54,7 @@ export function AppShell({ children, currentRole = 'owner', rightPanel }: AppShe
             onToggleLargeText={() => setIsLargeText(!isLargeText)}
           />
 
-          <main className="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full bg-cc-ivory dark:bg-[#0F1A1A] text-cc-ink dark:text-[#F5F5F5] transition-colors duration-200">
+          <main className="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full bg-cc-ivory dark:bg-[#0F1A1A] text-cc-ink dark:text-white transition-colors duration-200">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               <div className={rightPanel ? 'lg:col-span-8 space-y-6' : 'lg:col-span-12 space-y-6'}>
                 {children}
