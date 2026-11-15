@@ -6,77 +6,29 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Solarpunk + Elderly Healthcare Warm Palette
-        leaf: {
-          DEFAULT: '#16a34a',
-          light: '#4ade80',
-          dark: '#15803d',
-          wash: 'rgba(74, 222, 128, 0.12)',
-        },
-        golden: {
-          DEFAULT: '#fbbf24',
-          deep: '#f59e0b',
-          light: '#fef08a',
-          wash: 'rgba(251, 191, 36, 0.18)',
-        },
-        cream: {
-          light: '#fdfbf7',
-          warm: '#fef3c7',
-        },
-        mint: {
-          white: '#f0fdf4',
-          DEFAULT: '#dcfce7',
-        },
-        sky: {
-          DEFAULT: '#0284c7',
-          light: '#38bdf8',
-          wash: 'rgba(56, 189, 248, 0.15)',
-        },
-        ochre: {
-          DEFAULT: '#1c1917',
-          warm: '#78350f',
-          light: '#a16207',
-          muted: '#57534e',
-        },
-        lavender: {
-          DEFAULT: '#8b5cf6',
-          light: '#b692ff',
-          wash: 'rgba(182, 146, 255, 0.15)',
-        },
-        // Backwards compatibility mappings for existing cc-* utility classes
         cc: {
-          ink: '#1c1917', // Deep warm ochre-charcoal (no cold black)
-          ivory: '#fdfbf7', // Warm cream light ground
-          lemon: '#fbbf24', // Golden sunlight
-          powder: '#38bdf8', // Solarpunk sky clean energy
-          mist: '#dcfce7', // Soft leaf wash
-          ice: '#e0f2fe', // Soft sky wash
-          mint: '#f0fdf4', // Mint white
-          surface: '#f0fdf4', // Mint white card surface
-          muted: '#78350f', // Warm ochre muted
-          border: 'rgba(74, 222, 128, 0.20)', // Subtle organic leaf border
+          ink: '#11141A',
+          ivory: '#F9F5F1',
+          lemon: '#FFF25C',
+          powder: '#B2D8DD',
+          mist: '#EAF2ED',
+          ice: '#EAF2FF',
+          mint: '#EDF5E8',
+          surface: '#FFFFFF',
+          muted: '#526166',
+          border: 'rgba(17,20,26,0.08)',
         },
       },
       fontFamily: {
-        sans: [
-          'Nunito',
-          'ui-sans-serif',
-          'system-ui',
-          'Noto Sans Tamil',
-          'Noto Sans Devanagari',
-          'sans-serif',
-        ],
         headline: [
-          'Nunito',
-          'ui-sans-serif',
+          'Stack Sans Headline',
           'system-ui',
           'Noto Sans Tamil',
           'Noto Sans Devanagari',
           'sans-serif',
         ],
         body: [
-          'Nunito',
-          'ui-sans-serif',
+          'Stack Sans Text',
           'system-ui',
           'Noto Sans Tamil',
           'Noto Sans Devanagari',
@@ -84,18 +36,13 @@ const config: Config = {
         ],
       },
       borderRadius: {
-        card: '24px',
+        card: '22px',
         pill: '999px',
-        input: '16px',
-        media: '32px',
-        dialog: '24px',
+        dialog: '20px',
       },
       boxShadow: {
-        card: '0 12px 32px rgba(74, 222, 128, 0.18)',
-        'card-hover': '0 20px 48px rgba(74, 222, 128, 0.26)',
-        'sun-button': '0 8px 20px rgba(251, 191, 36, 0.35)',
-        'sun-button-hover': '0 14px 28px rgba(251, 191, 36, 0.45)',
-        elevated: '0 16px 48px rgba(74, 222, 128, 0.22)',
+        card: '0 8px 28px rgba(17,20,26,0.05)',
+        elevated: '0 16px 48px rgba(17,20,26,0.10)',
       },
       spacing: {
         '18': '4.5rem',

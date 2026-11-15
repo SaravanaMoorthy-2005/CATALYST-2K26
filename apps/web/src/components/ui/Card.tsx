@@ -11,7 +11,7 @@ export function Card({ children, className, as: Tag = 'div' }: CardProps) {
   return (
     <Tag
       className={cn(
-        'organic-card rounded-card bg-mint-white border border-leaf/20 shadow-card p-6 md:p-7 text-ochre',
+        'rounded-card bg-cc-surface shadow-card border border-cc-border p-6',
         className,
       )}
     >

@@ -31,102 +31,90 @@ interface StatusBadgeProps {
 
 const variantConfig: Record<
   StatusVariant,
-  { label: string; bg: string; text: string; border: string; Icon: React.ElementType }
+  { label: string; bg: string; text: string; Icon: React.ElementType }
 > = {
   taken: {
     label: 'Taken',
-    bg: 'bg-emerald-100/70',
-    text: 'text-emerald-900',
-    border: 'border-emerald-300',
+    bg: 'bg-cc-mint',
+    text: 'text-green-800',
     Icon: CheckCircle2,
   },
   skipped: {
     label: 'Skipped',
-    bg: 'bg-amber-100/50',
-    text: 'text-amber-900',
-    border: 'border-amber-200',
+    bg: 'bg-gray-100',
+    text: 'text-cc-muted',
     Icon: XCircle,
   },
   due: {
     label: 'Due',
-    bg: 'bg-amber-200/60',
-    text: 'text-amber-950 font-bold',
-    border: 'border-amber-400',
+    bg: 'bg-cc-ice',
+    text: 'text-blue-800',
     Icon: Clock,
   },
   unconfirmed: {
     label: 'Unconfirmed',
-    bg: 'bg-purple-100/70',
-    text: 'text-purple-900',
-    border: 'border-purple-300',
+    bg: 'bg-cc-mist',
+    text: 'text-green-900',
     Icon: HelpCircle,
   },
   pending: {
     label: 'Pending',
-    bg: 'bg-amber-100/60',
-    text: 'text-amber-900',
-    border: 'border-amber-300',
+    bg: 'bg-cc-mist',
+    text: 'text-green-900',
     Icon: AlertCircle,
   },
   active: {
     label: 'Active',
-    bg: 'bg-emerald-100/80',
-    text: 'text-emerald-900 font-semibold',
-    border: 'border-emerald-300',
+    bg: 'bg-cc-mint',
+    text: 'text-green-800',
     Icon: Activity,
   },
   paused: {
     label: 'Paused',
-    bg: 'bg-stone-100',
-    text: 'text-stone-700',
-    border: 'border-stone-300',
+    bg: 'bg-gray-100',
+    text: 'text-cc-muted',
     Icon: PauseCircle,
   },
   overdue: {
     label: 'Overdue',
-    bg: 'bg-rose-100',
-    text: 'text-rose-900 font-bold',
-    border: 'border-rose-300',
+    bg: 'bg-red-50',
+    text: 'text-red-700',
     Icon: TimerOff,
   },
   scheduled: {
     label: 'Scheduled',
-    bg: 'bg-sky-100/70',
-    text: 'text-sky-900',
-    border: 'border-sky-300',
+    bg: 'bg-cc-ice',
+    text: 'text-blue-800',
     Icon: Clock,
   },
   archived: {
     label: 'Archived',
-    bg: 'bg-stone-100',
-    text: 'text-stone-600',
-    border: 'border-stone-200',
+    bg: 'bg-gray-100',
+    text: 'text-cc-muted',
     Icon: PauseCircle,
   },
 }
 
 /**
  * Status badge with both text AND icon — never color alone.
- * Solarpunk organic rounded pill with subtle nature-toned border.
  * Fully accessible: screen readers get the text label.
  */
 export function StatusBadge({ variant, label, className }: StatusBadgeProps) {
-  const { label: defaultLabel, bg, text, border, Icon } = variantConfig[variant]
+  const { label: defaultLabel, bg, text, Icon } = variantConfig[variant]
   const displayLabel = label ?? defaultLabel
 
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-pill px-3.5 py-1 text-sm font-semibold font-sans border shadow-sm',
+        'inline-flex items-center gap-1.5 rounded-pill px-3 py-1 text-sm font-medium font-body',
         bg,
         text,
-        border,
         className,
       )}
       role="status"
       aria-label={displayLabel}
     >
-      <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+      <Icon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
       <span>{displayLabel}</span>
     </span>
   )

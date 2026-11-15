@@ -1,46 +1,38 @@
+import React from 'react'
 import { SurfaceCard } from '../../components/SurfaceCard'
 import { StatusBadge } from '../../components/StatusBadge'
-import { Heart, Calendar, CheckCircle2, Users, ShieldCheck, ArrowRight } from 'lucide-react'
+import { Heart, Calendar, Clock, CheckCircle2, Users, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 export function FamilyDashboard() {
   return (
-    <div className="space-y-7">
+    <div className="space-y-6">
       {/* Banner */}
-      <div className="p-7 rounded-[26px] bg-gradient-to-r from-sky-100/90 via-mint-white to-emerald-100/90 border border-sky-200/80 flex items-center justify-between gap-4 shadow-card">
+      <div className="p-6 rounded-card bg-cc-ice border border-blue-200 flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="icon-bed icon-bed-sky w-14 h-14 shadow-sm">
-            <Heart className="w-7 h-7 text-sky-800" />
+          <div className="w-12 h-12 rounded-2xl bg-blue-700 text-white flex items-center justify-center">
+            <Heart className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="font-headline font-extrabold text-2xl md:text-3xl text-ochre">Family Care Overview</h2>
-            <p className="text-sm text-ochre-warm font-semibold mt-0.5">
-              Viewing authorized shared records for Eleanor Vance
+            <h2 className="font-headline font-bold text-2xl text-cc-ink">Family Care Overview</h2>
+            <p className="text-sm text-cc-muted">
+              Viewing authorized shared records for Eleanor Parker
             </p>
           </div>
         </div>
-        <span className="hidden sm:inline-flex px-4 py-1.5 rounded-full text-xs font-bold bg-white text-sky-950 border border-sky-300 shadow-xs">
-          Family Access · Authorized View
+        <span className="hidden sm:inline-flex px-3 py-1.5 rounded-full text-xs font-semibold bg-white text-blue-900 border border-blue-100">
+          Family Access · View Only
         </span>
       </div>
 
       {/* RECENT CARE ACTIVITY */}
-      <SurfaceCard className="p-7">
-        <div className="flex items-center justify-between mb-5">
-          <div className="flex items-center gap-3">
-            <div className="icon-bed w-11 h-11">
-              <CheckCircle2 className="w-6 h-6 text-emerald-700" />
-            </div>
-            <div>
-              <h3 className="font-headline text-2xl font-bold text-ochre">
-                Recent Care Confirmations
-              </h3>
-              <p className="text-xs text-ochre-warm font-semibold">Real-time medication ingestion records with SafeDose verification</p>
-            </div>
-          </div>
-        </div>
+      <SurfaceCard className="p-6">
+        <h3 className="font-headline text-xl font-bold text-cc-ink mb-4 flex items-center gap-2">
+          <CheckCircle2 className="w-5 h-5 text-green-700" />
+          Recent Care Confirmations
+        </h3>
 
-        <div className="space-y-3.5">
+        <div className="space-y-3">
           {[
             {
               med: 'Atorvastatin 20mg',
@@ -52,7 +44,7 @@ export function FamilyDashboard() {
               med: 'Metformin 500mg',
               time: 'Yesterday, 01:15 PM',
               status: 'taken' as const,
-              actor: 'Confirmed by Caregiver Sarah',
+              actor: 'Confirmed by Caregiver John',
             },
             {
               med: 'Lisinopril 10mg',
@@ -63,18 +55,13 @@ export function FamilyDashboard() {
           ].map((entry, idx) => (
             <div
               key={idx}
-              className="p-4 rounded-[20px] bg-white border border-leaf/15 hover:border-leaf/35 hover:shadow-card transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+              className="p-3.5 rounded-2xl bg-white border border-cc-border flex items-center justify-between"
             >
-              <div className="flex items-center gap-3">
-                <div className="icon-bed w-9 h-9">
-                  <ShieldCheck className="w-5 h-5 text-emerald-700" />
-                </div>
-                <div>
-                  <span className="font-headline font-bold text-lg text-ochre">
-                    {entry.med}
-                  </span>
-                  <p className="text-xs text-ochre-warm font-semibold mt-0.5">{entry.actor} · {entry.time}</p>
-                </div>
+              <div>
+                <span className="font-headline font-semibold text-base text-cc-ink">
+                  {entry.med}
+                </span>
+                <p className="text-xs text-cc-muted mt-0.5">{entry.actor} · {entry.time}</p>
               </div>
               <StatusBadge variant={entry.status} />
             </div>
@@ -83,80 +70,66 @@ export function FamilyDashboard() {
       </SurfaceCard>
 
       {/* UPCOMING VISITS */}
-      <SurfaceCard className="p-7">
-        <div className="flex items-center justify-between mb-5">
-          <div className="flex items-center gap-3">
-            <div className="icon-bed icon-bed-sky w-11 h-11">
-              <Calendar className="w-6 h-6 text-sky-800" />
-            </div>
-            <div>
-              <h3 className="font-headline text-2xl font-bold text-ochre">
-                Upcoming Family Appointments
-              </h3>
-              <p className="text-xs text-ochre-warm font-semibold">Scheduled clinic visits & companion checklist</p>
-            </div>
-          </div>
-          <Link to="/appointments" className="text-sm font-bold text-emerald-800 hover:underline flex items-center gap-1">
-            View Details <ArrowRight className="w-4 h-4" />
+      <SurfaceCard className="p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="font-headline text-xl font-bold text-cc-ink flex items-center gap-2">
+            <Calendar className="w-5 h-5 text-blue-700" />
+            Upcoming Family Appointments
+          </h3>
+          <Link to="/appointments" className="text-xs font-semibold text-cc-ink hover:underline">
+            View Details
           </Link>
         </div>
 
-        <div className="p-5 rounded-[22px] bg-white border border-leaf/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm hover:shadow-card transition-all">
+        <div className="p-4 rounded-2xl bg-cc-ivory border border-cc-border flex items-center justify-between">
           <div>
-            <span className="text-xs font-bold text-sky-900 uppercase bg-sky-100 px-2.5 py-0.5 rounded-full">Tomorrow, 10:30 AM</span>
-            <h4 className="font-headline font-bold text-xl text-ochre mt-1">
+            <span className="text-xs font-bold text-blue-800 uppercase">Tomorrow, 10:30 AM</span>
+            <h4 className="font-headline font-bold text-base text-cc-ink mt-0.5">
               Dr. Sarah Jenkins (Cardiology)
             </h4>
-            <p className="text-xs text-ochre-warm font-semibold mt-0.5">St. Jude Medical Center, Suite 402</p>
+            <p className="text-xs text-cc-muted">St. Jude Medical Center, Suite 402</p>
           </div>
-          <span className="px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-950 border border-emerald-300 self-start sm:self-auto">
-            Confirmed Visit
+          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-cc-border text-cc-ink">
+            Confirmed
           </span>
         </div>
       </SurfaceCard>
 
       {/* CARE CIRCLE MEMBERS */}
-      <SurfaceCard className="p-7">
-        <div className="flex items-center gap-3 mb-5">
-          <div className="icon-bed w-11 h-11">
-            <Users className="w-6 h-6 text-emerald-700" />
-          </div>
-          <div>
-            <h3 className="font-headline text-2xl font-bold text-ochre">
-              Connected Care Circle
-            </h3>
-            <p className="text-xs text-ochre-warm font-semibold">Authorized members with patient health profile access</p>
-          </div>
-        </div>
+      <SurfaceCard className="p-6">
+        <h3 className="font-headline text-xl font-bold text-cc-ink mb-4 flex items-center gap-2">
+          <Users className="w-5 h-5 text-cc-ink" />
+          Connected Care Circle
+        </h3>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="p-4 rounded-[20px] bg-white border border-leaf/20 flex items-center gap-3.5 shadow-sm">
-            <div className="icon-bed icon-bed-golden w-11 h-11 font-bold text-sm">
-              EV
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="p-3.5 rounded-2xl bg-white border border-cc-border flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-cc-lemon text-cc-ink font-bold flex items-center justify-center text-sm">
+              EP
             </div>
             <div>
-              <p className="text-base font-bold text-ochre">Eleanor Vance</p>
-              <p className="text-xs text-amber-900 font-bold bg-amber-100 px-2 py-0.5 rounded-full mt-0.5 inline-block">Elder (Owner)</p>
+              <p className="text-sm font-bold text-cc-ink">Eleanor Parker</p>
+              <p className="text-xs text-cc-muted">Elder (Owner)</p>
             </div>
           </div>
 
-          <div className="p-4 rounded-[20px] bg-white border border-leaf/20 flex items-center gap-3.5 shadow-sm">
-            <div className="icon-bed w-11 h-11 font-bold text-sm">
-              SJ
+          <div className="p-3.5 rounded-2xl bg-white border border-cc-border flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-cc-mist text-green-900 font-bold flex items-center justify-center text-sm">
+              JD
             </div>
             <div>
-              <p className="text-base font-bold text-ochre">Sarah Jenkins, RN</p>
-              <p className="text-xs text-emerald-900 font-bold bg-emerald-100 px-2 py-0.5 rounded-full mt-0.5 inline-block">Primary Caretaker</p>
+              <p className="text-sm font-bold text-cc-ink">John Doe</p>
+              <p className="text-xs text-cc-muted">Primary Caregiver</p>
             </div>
           </div>
 
-          <div className="p-4 rounded-[20px] bg-white border border-leaf/20 flex items-center gap-3.5 shadow-sm">
-            <div className="icon-bed icon-bed-sky w-11 h-11 font-bold text-sm">
-              MV
+          <div className="p-3.5 rounded-2xl bg-white border border-cc-border flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-cc-ice text-blue-900 font-bold flex items-center justify-center text-sm">
+              SP
             </div>
             <div>
-              <p className="text-base font-bold text-ochre">Marcus Vance</p>
-              <p className="text-xs text-sky-900 font-bold bg-sky-100 px-2 py-0.5 rounded-full mt-0.5 inline-block">Family Member</p>
+              <p className="text-sm font-bold text-cc-ink">Sarah Parker</p>
+              <p className="text-xs text-cc-muted">Family Member</p>
             </div>
           </div>
         </div>

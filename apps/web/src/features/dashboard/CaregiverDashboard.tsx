@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import {
+  AlertCircle,
+  HelpCircle,
+  CheckCircle2,
   RefreshCw,
   Clock,
   Pill,
@@ -7,10 +10,9 @@ import {
   Activity,
   ArrowRight,
   ShieldAlert,
-  HeartPulse,
-  Sparkles,
 } from 'lucide-react'
 import { SurfaceCard } from '../../components/SurfaceCard'
+import { StatusBadge } from '../../components/StatusBadge'
 import { Link } from 'react-router-dom'
 
 interface AttentionItem {
@@ -25,7 +27,7 @@ interface AttentionItem {
 }
 
 export function CaregiverDashboard() {
-  const [items] = useState<AttentionItem[]>([
+  const [items, setItems] = useState<AttentionItem[]>([
     {
       id: 'item_1',
       type: 'help_request',
@@ -75,97 +77,93 @@ export function CaregiverDashboard() {
   }
 
   return (
-    <div className="space-y-7">
+    <div className="space-y-6">
       {/* HEADER: CareCircle Context Bar */}
-      <div className="p-5 rounded-[22px] bg-mint-white border border-leaf/25 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-card">
-        <div className="flex items-center gap-3.5">
-          <div className="icon-bed w-12 h-12 text-base font-extrabold bg-gradient-to-br from-leaf to-golden text-white shadow-sm">
-            EV
+      <div className="p-4 rounded-2xl bg-white border border-cc-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-cc-mint flex items-center justify-center text-green-900 font-bold">
+            EP
           </div>
           <div>
-            <h2 className="font-headline font-bold text-xl text-ochre">
-              Eleanor Vance's Care Circle
+            <h2 className="font-headline font-bold text-lg text-cc-ink">
+              Eleanor Parker's Care Circle
             </h2>
-            <p className="text-xs text-ochre-warm font-semibold">Active Care Plan · Primary Caregiver: Sarah Jenkins, RN</p>
+            <p className="text-xs text-cc-muted">Timezone: America/New_York (EST) · Active Plan</p>
           </div>
         </div>
 
         <div className="flex items-center gap-2 self-end sm:self-auto">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">
+            <span className="w-2 h-2 rounded-full bg-green-600 animate-pulse" />
             Live Sync Active
           </span>
         </div>
       </div>
 
       {/* ATTENTION QUEUE (Primary Focus of CarePulse) */}
-      <SurfaceCard className="p-7">
-        <div className="flex items-center justify-between mb-5">
-          <div className="flex items-center gap-3">
-            <div className="icon-bed w-11 h-11 bg-rose-100 text-rose-800">
-              <ShieldAlert className="w-6 h-6" />
-            </div>
-            <div>
-              <h3 className="font-headline text-2xl font-bold text-ochre">
-                CarePulse Attention Queue
-              </h3>
-              <p className="text-xs text-ochre-warm font-semibold">Prioritized clinical and caregiver follow-up actions</p>
-            </div>
+      <SurfaceCard className="p-6">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <ShieldAlert className="w-6 h-6 text-red-600" />
+            <h3 className="font-headline text-xl font-bold text-cc-ink">
+              CarePulse Attention Queue
+            </h3>
           </div>
-          <span className="px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-900 border border-rose-300">
-            {items.filter((i) => !acknowledgedIds.includes(i.id)).length} Actions Needed
+          <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800">
+            {items.filter((i) => !acknowledgedIds.includes(i.id)).length} Pending Actions
           </span>
         </div>
 
-        <div className="space-y-3.5">
+        <div className="space-y-3">
           {items.map((item) => {
             const isAck = acknowledgedIds.includes(item.id)
             return (
               <div
                 key={item.id}
-                className={`p-5 rounded-[20px] border transition-all ${
+                className={`p-4 rounded-2xl border transition-all ${
                   isAck
-                    ? 'bg-stone-50 border-stone-200 opacity-60'
+                    ? 'bg-gray-50 border-gray-200 opacity-60'
                     : item.urgency === 'high'
-                    ? 'bg-rose-50/50 border-rose-200 shadow-sm'
-                    : 'bg-white border-leaf/15 hover:border-leaf/35 shadow-sm'
+                    ? 'bg-red-50/40 border-red-200'
+                    : 'bg-white border-cc-border'
                 }`}
               >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div>
-                    <div className="flex items-center gap-2 mb-1">
+                    <div className="flex items-center gap-2">
                       <span
-                        className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider ${
+                        className={`px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider ${
                           item.urgency === 'high'
-                            ? 'bg-rose-600 text-white'
-                            : 'bg-amber-100 text-amber-900 border border-amber-300'
+                            ? 'bg-red-600 text-white'
+                            : 'bg-amber-100 text-amber-800'
                         }`}
                       >
-                        {item.urgency} Priority
+                        {item.urgency}
                       </span>
-                      <span className="text-xs text-ochre/70 font-semibold">{item.time}</span>
+                      <span className="text-xs text-cc-muted font-medium">{item.time}</span>
                     </div>
 
-                    <h4 className="font-headline font-bold text-base text-ochre">
+                    <h4 className="font-headline font-semibold text-base text-cc-ink mt-1">
                       {item.title}
                     </h4>
-                    <p className="text-xs text-ochre-warm font-semibold mt-0.5">{item.subtitle}</p>
+                    <p className="text-xs text-cc-muted mt-0.5">{item.subtitle}</p>
                   </div>
 
-                  <div className="flex items-center gap-2 self-end sm:self-auto flex-shrink-0">
+                  <div className="flex items-center gap-2 self-end sm:self-auto">
                     {!isAck && (
                       <button
                         onClick={() => handleAcknowledge(item.id)}
-                        className="px-3.5 py-2 rounded-pill text-xs font-bold text-ochre border border-stone-300 hover:bg-stone-100 transition-colors"
+                        className="px-3 py-1.5 rounded-full text-xs font-semibold border border-cc-border hover:bg-white text-cc-ink"
                       >
                         Acknowledge
                       </button>
                     )}
+
                     <Link
                       to={item.actionRoute}
-                      className="sun-button px-5 py-2 text-xs font-bold text-white rounded-pill flex items-center gap-1 shadow-sm"
+                      className="px-4 py-2 rounded-full text-xs font-bold bg-cc-ink text-white hover:opacity-90 flex items-center gap-1.5"
                     >
-                      {item.actionLabel}
+                      <span>{item.actionLabel}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
@@ -176,78 +174,89 @@ export function CaregiverDashboard() {
         </div>
       </SurfaceCard>
 
-      {/* CAREGIVER QUICK HUB & CLINICAL STATS */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <SurfaceCard className="p-6">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="icon-bed">
-              <Activity className="w-5 h-5 text-emerald-700" />
-            </div>
-            <div>
-              <p className="text-xs text-ochre-warm font-bold uppercase tracking-wider">7-Day Adherence</p>
-              <h4 className="font-headline font-extrabold text-3xl text-ochre">94.8%</h4>
-            </div>
+      {/* ADHERENCE INSIGHTS & STATS */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <SurfaceCard className="p-5">
+          <div className="flex items-center justify-between text-cc-muted text-xs font-semibold mb-2">
+            <span>7-DAY ADHERENCE</span>
+            <Activity className="w-4 h-4 text-green-700" />
           </div>
-          <p className="text-xs text-emerald-800 font-bold flex items-center gap-1">
-            <Sparkles className="w-3.5 h-3.5" />
-            +2.4% adherence vs previous week
-          </p>
+          <div className="font-headline text-3xl font-extrabold text-cc-ink">92%</div>
+          <p className="text-xs text-cc-muted mt-1">19 of 21 scheduled doses recorded taken.</p>
         </SurfaceCard>
 
-        <SurfaceCard className="p-6">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="icon-bed icon-bed-golden">
-              <RefreshCw className="w-5 h-5 text-amber-700" />
-            </div>
-            <div>
-              <p className="text-xs text-ochre-warm font-bold uppercase tracking-wider">Refill Guardian</p>
-              <h4 className="font-headline font-extrabold text-3xl text-ochre">1 Low Stock</h4>
-            </div>
+        <SurfaceCard className="p-5">
+          <div className="flex items-center justify-between text-cc-muted text-xs font-semibold mb-2">
+            <span>REFILL GUARDIAN</span>
+            <RefreshCw className="w-4 h-4 text-blue-700" />
           </div>
-          <Link to="/refills" className="text-xs text-amber-900 font-bold hover:underline flex items-center gap-1">
-            Review inventory ledger <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+          <div className="font-headline text-3xl font-extrabold text-cc-ink">1 Low</div>
+          <p className="text-xs text-cc-muted mt-1">Metformin due for refill in 4 days.</p>
         </SurfaceCard>
 
-        <SurfaceCard className="p-6">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="icon-bed icon-bed-sky">
-              <Clock className="w-5 h-5 text-sky-800" />
-            </div>
-            <div>
-              <p className="text-xs text-ochre-warm font-bold uppercase tracking-wider">CareShift Handoff</p>
-              <h4 className="font-headline font-extrabold text-3xl text-ochre">Ready</h4>
-            </div>
+        <SurfaceCard className="p-5">
+          <div className="flex items-center justify-between text-cc-muted text-xs font-semibold mb-2">
+            <span>CARESHIFT STATUS</span>
+            <Clock className="w-4 h-4 text-purple-700" />
           </div>
-          <Link to="/tasks" className="text-xs text-sky-900 font-bold hover:underline flex items-center gap-1">
-            Generate 24h summary <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+          <div className="font-headline text-3xl font-extrabold text-cc-ink">3 Active</div>
+          <p className="text-xs text-cc-muted mt-1">2 tasks completed, 1 pending acceptance.</p>
         </SurfaceCard>
       </div>
 
-      {/* QUICK WORKFLOW NAVIGATION CARDS */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {[
-          { label: 'Medications', route: '/medications', icon: Pill, desc: 'Schedules & Doses' },
-          { label: 'Care Tasks', route: '/tasks', icon: Clock, desc: 'Assign & Handoff' },
-          { label: 'Refills', route: '/refills', icon: RefreshCw, desc: 'Ledger & Supply' },
-          { label: 'Care Circle', route: '/care-circle', icon: Users, desc: 'Roster & Passcodes' },
-        ].map((action) => {
-          const Icon = action.icon
-          return (
-            <Link
-              key={action.label}
-              to={action.route}
-              className="organic-card p-5 rounded-[22px] bg-mint-white border border-leaf/20 hover:border-leaf/40 hover:-translate-y-1 transition-all text-center flex flex-col items-center justify-center gap-2 group"
-            >
-              <div className="icon-bed w-12 h-12 group-hover:scale-110 transition-transform">
-                <Icon className="w-6 h-6 text-emerald-700" />
-              </div>
-              <span className="font-headline font-bold text-base text-ochre">{action.label}</span>
-              <span className="text-[11px] text-ochre-warm font-semibold">{action.desc}</span>
-            </Link>
-          )
-        })}
+      {/* QUICK WORKFLOW ACCESS */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Link
+          to="/tasks"
+          className="p-4 rounded-card bg-white border border-cc-border hover:border-cc-ink hover:shadow-card transition-all flex items-center gap-3"
+        >
+          <div className="w-10 h-10 rounded-xl bg-cc-ice text-blue-800 flex items-center justify-center">
+            <Clock className="w-5 h-5" />
+          </div>
+          <div>
+            <h4 className="font-headline font-bold text-sm text-cc-ink">CareShift</h4>
+            <p className="text-xs text-cc-muted">Assign care tasks</p>
+          </div>
+        </Link>
+
+        <Link
+          to="/refills"
+          className="p-4 rounded-card bg-white border border-cc-border hover:border-cc-ink hover:shadow-card transition-all flex items-center gap-3"
+        >
+          <div className="w-10 h-10 rounded-xl bg-cc-mint text-green-800 flex items-center justify-center">
+            <RefreshCw className="w-5 h-5" />
+          </div>
+          <div>
+            <h4 className="font-headline font-bold text-sm text-cc-ink">Refill Guardian</h4>
+            <p className="text-xs text-cc-muted">Inventory ledger</p>
+          </div>
+        </Link>
+
+        <Link
+          to="/reconciliation"
+          className="p-4 rounded-card bg-white border border-cc-border hover:border-cc-ink hover:shadow-card transition-all flex items-center gap-3"
+        >
+          <div className="w-10 h-10 rounded-xl bg-cc-mist text-green-900 flex items-center justify-center">
+            <Pill className="w-5 h-5" />
+          </div>
+          <div>
+            <h4 className="font-headline font-bold text-sm text-cc-ink">DischargeSync</h4>
+            <p className="text-xs text-cc-muted">Reconcile prescriptions</p>
+          </div>
+        </Link>
+
+        <Link
+          to="/care-circle"
+          className="p-4 rounded-card bg-white border border-cc-border hover:border-cc-ink hover:shadow-card transition-all flex items-center gap-3"
+        >
+          <div className="w-10 h-10 rounded-xl bg-cc-lemon/50 text-cc-ink flex items-center justify-center">
+            <Users className="w-5 h-5" />
+          </div>
+          <div>
+            <h4 className="font-headline font-bold text-sm text-cc-ink">Care Circle</h4>
+            <p className="text-xs text-cc-muted">Permissions & Invites</p>
+          </div>
+        </Link>
       </div>
     </div>
   )
