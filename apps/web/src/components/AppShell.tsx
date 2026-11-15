@@ -15,13 +15,12 @@ export function AppShell({ children, currentRole = 'owner', rightPanel }: AppShe
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const [language, setLanguage] = useState<'en' | 'ta' | 'hi'>('en')
   const [isLargeText, setIsLargeText] = useState(false)
-  const [isHighContrast, setIsHighContrast] = useState(false)
 
   return (
     <div
-      className={`min-h-screen flex flex-col bg-cc-ivory text-cc-ink ${
+      className={`min-h-screen flex flex-col bg-cc-ivory text-cc-ink transition-colors duration-200 ${
         isLargeText ? 'text-lg' : 'text-base'
-      } ${isHighContrast ? 'contrast-more' : ''}`}
+      }`}
     >
       <div className="flex flex-1 overflow-hidden">
         {/* Desktop Sidebar */}
@@ -53,8 +52,6 @@ export function AppShell({ children, currentRole = 'owner', rightPanel }: AppShe
             onLanguageChange={setLanguage}
             isLargeText={isLargeText}
             onToggleLargeText={() => setIsLargeText(!isLargeText)}
-            isHighContrast={isHighContrast}
-            onToggleHighContrast={() => setIsHighContrast(!isHighContrast)}
           />
 
           <main className="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full">

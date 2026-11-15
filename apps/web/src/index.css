@@ -24,6 +24,21 @@
   --cc-radius-pill: 999px;
 }
 
+.dark {
+  --cc-ink: #F5F5F5;
+  --cc-ivory: #0F1A1A;
+  --cc-lemon: #FFF25C;
+  --cc-powder: #5EC4C4;
+  --cc-mist: #162E2E;
+  --cc-ice: #162836;
+  --cc-mint: #163628;
+  --cc-surface: #1B2B2B;
+  --cc-muted-text: #9CA3AF;
+  --cc-border: rgba(255, 255, 255, 0.12);
+  --cc-shadow-card: 0 8px 28px rgba(0, 0, 0, 0.40);
+  --cc-shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.60);
+}
+
 /* ───────────────────────────────
    Base Layer
 ─────────────────────────────── */
@@ -60,6 +75,11 @@
   border: 1px solid rgba(255, 255, 255, 0.70);
   backdrop-filter: blur(16px) saturate(130%);
   -webkit-backdrop-filter: blur(16px) saturate(130%);
+}
+
+.dark .cc-glass-shell {
+  background: rgba(27, 43, 43, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 @supports not (backdrop-filter: blur(16px)) {
