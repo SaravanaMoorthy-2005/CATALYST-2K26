@@ -30,6 +30,7 @@ interface AuthContextValue {
   signIn: (email: string, pass: string) => Promise<void>
   signUp: (email: string, pass: string, displayName: string) => Promise<void>
   signInWithGoogle: () => Promise<void>
+  signInAsDemo: (role: Role) => void
   signOut: () => Promise<void>
   sendPasswordReset: (email: string) => Promise<void>
   sendEmailVerification: () => Promise<void>
@@ -44,11 +45,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [activeCircleId, setActiveCircleId] = useState<string | null>('circle_demo_1')
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser)
-      setLoading(false)
-    })
-    return unsubscribe
+    let isMounted = true
+    try {
+      const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+        if (isMounted) {
+          setUser(firebaseUser)
+          setLoading(false)
+        }
+      })
+      const timer = setTimeout(() => {
+        if (isMounted) {
+          setLoading(false)
+        }
+      }, 300)
+
+      return () => {
+        isMounted = false
+        clearTimeout(timer)
+        unsubscribe()
+      }
+    } catch {
+      if (isMounted) {
+        setLoading(false)
+      }
+    }
   }, [])
 
   const signIn = async (email: string, pass: string) => {
@@ -67,8 +87,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await signInWithPopup(auth, provider)
   }
 
+  const signInAsDemo = (role: Role) => {
+    setCurrentRole(role)
+    const demoEmails: Record<Role, string> = {
+      owner: 'elder@carecircle.app',
+      caregiver: 'caregiver@carecircle.app',
+      family: 'family@carecircle.app',
+    }
+    const demoNames: Record<Role, string> = {
+      owner: 'Eleanor Vance (Patient)',
+      caregiver: 'Sarah Jenkins, RN (Caretaker)',
+      family: 'Marcus Vance (Family Member)',
+    }
+    setUser({
+      uid: `demo_${role}_uid`,
+      email: demoEmails[role],
+      displayName: demoNames[role],
+      emailVerified: true,
+      isAnonymous: false,
+    } as unknown as User)
+  }
+
   const signOut = async () => {
-    await fbSignOut(auth)
+    setUser(null)
+    try {
+      await fbSignOut(auth)
+    } catch {
+      // ignore in offline/preview
+    }
   }
 
   const sendPasswordReset = async (email: string) => {
@@ -93,6 +139,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         signIn,
         signUp,
         signInWithGoogle,
+        signInAsDemo,
         signOut,
         sendPasswordReset,
         sendEmailVerification,
