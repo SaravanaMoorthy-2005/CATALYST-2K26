@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────────────────────────
+   Design Tokens
+─────────────────────────────── */
+:root {
+  --cc-ink: #11141A;
+  --cc-ivory: #F9F5F1;
+  --cc-lemon: #FFF25C;
+  --cc-powder: #B2D8DD;
+  --cc-mist: #EAF2ED;
+  --cc-ice: #EAF2FF;
+  --cc-mint: #EDF5E8;
+  --cc-surface: #FFFFFF;
+  --cc-muted-text: #526166;
+  --cc-border: rgba(17,20,26,0.08);
+  --cc-shadow-card: 0 8px 28px rgba(17,20,26,0.05);
+  --cc-shadow-elevated: 0 16px 48px rgba(17,20,26,0.10);
+  --cc-radius-card: 22px;
+  --cc-radius-pill: 999px;
+}
+
+/* ───────────────────────────────
+   Base Layer
+─────────────────────────────── */
+@layer base {
+  html {
+    font-family: 'Stack Sans Text', system-ui, 'Noto Sans Tamil', 'Noto Sans Devanagari', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  body {
+    @apply bg-cc-ivory text-cc-ink;
+    min-height: 100vh;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--cc-powder);
+    outline-offset: 2px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Stack Sans Headline', system-ui, 'Noto Sans Tamil', 'Noto Sans Devanagari', sans-serif;
+    line-height: 1.25;
+  }
+}
+
+/* ───────────────────────────────
+   Glass Shell Component
+─────────────────────────────── */
+.cc-glass-shell {
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.70);
+  backdrop-filter: blur(16px) saturate(130%);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
+}
+
+@supports not (backdrop-filter: blur(16px)) {
+  .cc-glass-shell {
+    background: #f6f9f8;
+  }
+}
+
+/* ───────────────────────────────
+   Content Card
+─────────────────────────────── */
+.cc-content-card {
+  background: var(--cc-surface);
+  border: 1px solid var(--cc-border);
+  border-radius: var(--cc-radius-card);
+  box-shadow: var(--cc-shadow-card);
+  padding: 1.5rem;
+}
+
+/* ───────────────────────────────
+   Buttons
+─────────────────────────────── */
+.cc-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Stack Sans Text', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.75rem 1.5rem;
+  min-height: 48px;
+  background: var(--cc-ink);
+  color: var(--cc-ivory);
+  border: none;
+  border-radius: var(--cc-radius-pill);
+  cursor: pointer;
+  transition: background 180ms ease, opacity 180ms ease;
+}
+
+.cc-btn-primary:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.cc-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cc-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Stack Sans Text', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.75rem 1.5rem;
+  min-height: 48px;
+  background: transparent;
+  color: var(--cc-ink);
+  border: 1.5px solid var(--cc-ink);
+  border-radius: var(--cc-radius-pill);
+  cursor: pointer;
+  transition: background 180ms ease;
+}
+
+.cc-btn-secondary:hover:not(:disabled) {
+  background: rgba(17,20,26,0.05);
+}
+
+.cc-btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ───────────────────────────────
+   Screen-reader only utility
+─────────────────────────────── */
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
+/* ───────────────────────────────
+   Reduced Motion
+─────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ───────────────────────────────
+   Reduced Transparency
+─────────────────────────────── */
+@media (prefers-reduced-transparency: reduce) {
+  .cc-glass-shell {
+    background: #f6f9f8;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* ───────────────────────────────
+   High Contrast
+─────────────────────────────── */
+@media (prefers-contrast: more) {
+  .cc-glass-shell {
+    background: white;
+    border: 2px solid #11141A;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .cc-content-card {
+    border: 2px solid #11141A;
+  }
+
+  :root {
+    --cc-muted-text: #11141A;
+    --cc-border: rgba(17,20,26,0.4);
+  }
+}

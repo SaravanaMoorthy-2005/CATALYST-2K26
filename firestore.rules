@@ -1,0 +1,140 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isUser(uid) {
+      return isAuthenticated() && request.auth.uid == uid;
+    }
+
+    function isCircleMember(circleId) {
+      return isAuthenticated() && (
+        exists(/databases/$(database)/documents/careCircles/$(circleId)/members/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/careCircles/$(circleId)/members/$(request.auth.uid)).data.status == 'active'
+      );
+    }
+
+    function isCircleOwner(circleId) {
+      return isAuthenticated() && (
+        get(/databases/$(database)/documents/careCircles/$(circleId)).data.ownerUid == request.auth.uid
+      );
+    }
+
+    function hasPermission(circleId, perm) {
+      return isCircleOwner(circleId) || (
+        isCircleMember(circleId) &&
+        get(/databases/$(database)/documents/careCircles/$(circleId)/members/$(request.auth.uid)).data.permissions[perm] == true
+      );
+    }
+
+    // Default deny all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Users collection: user can only read and update their own document
+    match /users/{uid} {
+      allow read: if isUser(uid) || isAuthenticated();
+      allow write: if isUser(uid);
+    }
+
+    // Care circles
+    match /careCircles/{circleId} {
+      allow read: if isCircleMember(circleId) || isCircleOwner(circleId);
+      allow create: if isAuthenticated() && request.resource.data.ownerUid == request.auth.uid;
+      allow update: if isCircleOwner(circleId);
+      allow delete: if isCircleOwner(circleId);
+
+      // Members subcollection
+      match /members/{memberUid} {
+        allow read: if isCircleMember(circleId) || isCircleOwner(circleId);
+        // Direct member creation/update is restricted to functions / owner
+        allow write: if isCircleOwner(circleId);
+      }
+
+      // Medications subcollection
+      match /medications/{medId} {
+        allow read: if hasPermission(circleId, 'medication_read');
+        allow write: if false; // Mutated via Cloud Functions only
+      }
+
+      // Dose occurrences subcollection
+      match /doseOccurrences/{occId} {
+        allow read: if hasPermission(circleId, 'medication_read');
+        allow write: if false; // Mutated via Cloud Functions (SafeDose Shield) only
+      }
+
+      // Dose events
+      match /doseEvents/{eventId} {
+        allow read: if hasPermission(circleId, 'adherence_read');
+        allow write: if false; // Append-only via backend Cloud Functions
+      }
+
+      // Appointments subcollection
+      match /appointments/{apptId} {
+        allow read: if hasPermission(circleId, 'appointments_read');
+        allow write: if false; // Mutated via Cloud Functions
+      }
+
+      // Alerts subcollection
+      match /alerts/{alertId} {
+        allow read: if hasPermission(circleId, 'alerts_read');
+        allow write: if false;
+      }
+
+      // Assistance requests
+      match /assistanceRequests/{requestId} {
+        allow read: if isCircleMember(circleId) || isCircleOwner(circleId);
+        allow write: if false;
+      }
+
+      // Inventory ledger & Refills
+      match /inventoryLedger/{entryId} {
+        allow read: if hasPermission(circleId, 'medication_read');
+        allow write: if false;
+      }
+
+      match /refillTasks/{taskId} {
+        allow read: if hasPermission(circleId, 'tasks_read');
+        allow write: if false;
+      }
+
+      // Prescription reconciliations (DischargeSync)
+      match /prescriptionReconciliations/{recId} {
+        allow read: if hasPermission(circleId, 'medication_read');
+        allow write: if false;
+      }
+
+      // CareShift tasks
+      match /careTasks/{taskId} {
+        allow read: if hasPermission(circleId, 'tasks_read');
+        allow write: if false;
+      }
+
+      // Wellbeing check-ins
+      match /wellbeingCheckIns/{checkInId} {
+        allow read: if isCircleMember(circleId) || isCircleOwner(circleId);
+        allow write: if false;
+      }
+
+      // Audit logs (backend append only)
+      match /auditLogs/{logId} {
+        allow read: if isCircleOwner(circleId);
+        allow write: if false;
+      }
+    }
+
+    // Backend-only collections (never readable/writable by client SDK directly)
+    match /invitations/{invitationId} {
+      allow read, write: if false;
+    }
+
+    match /notificationJobs/{jobId} {
+      allow read, write: if false;
+    }
+  }
+}

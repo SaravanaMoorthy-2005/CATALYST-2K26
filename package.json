@@ -1,0 +1,37 @@
+{
+  "name": "carecircle",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "functions",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @carecircle/web",
+    "build": "npm run build --workspace @carecircle/web",
+    "build:web": "npm run build --workspace @carecircle/web",
+    "build:functions": "npm run build --workspace @carecircle/functions",
+    "typecheck": "npm run typecheck --workspace @carecircle/shared && npm run typecheck --workspace @carecircle/web && npm run typecheck --workspace @carecircle/functions",
+    "lint": "eslint \"apps/web/src/**/*.{ts,tsx}\" \"functions/src/**/*.ts\" \"packages/shared/src/**/*.ts\" --max-warnings 50",
+    "format:check": "prettier --check \"**/*.{ts,tsx,json,css,md}\" --ignore-path .gitignore",
+    "test": "vitest run --reporter=verbose",
+    "test:rules": "vitest run tests/rules",
+    "test:integration": "vitest run tests/integration",
+    "test:e2e": "playwright test tests/e2e",
+    "test:a11y": "vitest run tests/a11y",
+    "verify": "npm run typecheck && npm run test && npm run build:web"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.46.1",
+    "@types/node": "^20.14.10",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
+  }
+}
