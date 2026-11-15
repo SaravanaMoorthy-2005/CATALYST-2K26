@@ -123,12 +123,12 @@ export function ElderDashboard() {
       )}
 
       {/* DOMINANT NEXT-ACTION CARD (The core of CareDay) */}
-      <SurfaceCard className="border-2 border-cc-powder p-6 md:p-8 relative overflow-hidden">
+      <SurfaceCard className="border-2 border-cc-powder dark:border-white/60 p-6 md:p-8 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 bg-cc-lemon/20 rounded-bl-full pointer-events-none" />
 
         <div className="flex items-center justify-between gap-4 mb-4">
           <div className="flex items-center gap-2">
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-cc-ice text-blue-900 dark:text-blue-200 uppercase tracking-wider">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-cc-ice text-blue-900 dark:text-blue-200 border border-blue-200 dark:border-white/50 uppercase tracking-wider">
               Next Medication
             </span>
             <span className="text-sm text-cc-muted font-medium flex items-center gap-1">
@@ -139,7 +139,7 @@ export function ElderDashboard() {
           <div className="flex items-center gap-2">
             <Link
               to="/due-alert"
-              className="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-200 border border-amber-300 dark:border-amber-700 hover:bg-amber-200 transition-colors flex items-center gap-1"
+              className="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-200 border border-amber-300 dark:border-white/60 hover:bg-amber-200 transition-colors flex items-center gap-1"
               title="Open full-screen smartphone alert mockup"
             >
               <span>🔔 CareGuardian Alert</span>
@@ -154,7 +154,7 @@ export function ElderDashboard() {
           </h2>
           <p className="text-lg text-cc-muted font-medium mb-3">{nextDose.dosage}</p>
           {nextDose.instructions && (
-            <div className="p-3 rounded-xl bg-cc-mist text-sm text-cc-ink border border-cc-border">
+            <div className="p-3 rounded-xl bg-cc-mist text-sm text-cc-ink border border-cc-border dark:border-white/50">
               <strong>Instructions:</strong> {nextDose.instructions}
             </div>
           )}
@@ -165,10 +165,10 @@ export function ElderDashboard() {
           <button
             onClick={() => handleMarkTaken(nextDose.id)}
             disabled={nextDose.status === 'taken'}
-            className={`flex-1 min-h-[56px] px-6 py-3.5 rounded-full font-headline text-lg font-bold flex items-center justify-center gap-3 transition-all ${
+            className={`flex-1 min-h-[56px] px-6 py-3.5 rounded-full font-headline text-lg font-bold flex items-center justify-center gap-3 transition-all border-2 ${
               nextDose.status === 'taken'
-                ? 'bg-cc-mint text-green-900 dark:text-green-200 border border-green-300 cursor-default'
-                : 'bg-cc-ink text-cc-ivory hover:opacity-90 active:scale-[0.99] shadow-md'
+                ? 'bg-cc-mint text-green-900 dark:text-green-200 border-green-300 dark:border-white/60 cursor-default'
+                : 'bg-cc-ink text-cc-ivory border-transparent dark:border-white/70 hover:opacity-90 active:scale-[0.99] shadow-md'
             }`}
             aria-label={`Mark ${nextDose.medicationName} as Taken`}
           >
@@ -179,7 +179,7 @@ export function ElderDashboard() {
           <button
             onClick={() => handleSkipPrompt(nextDose)}
             disabled={nextDose.status === 'taken' || nextDose.status === 'skipped'}
-            className="sm:w-36 min-h-[56px] px-4 py-3.5 rounded-full border-2 border-cc-border hover:bg-black/5 dark:hover:bg-white/10 font-body text-base font-semibold text-cc-ink flex items-center justify-center gap-2 transition-colors disabled:opacity-40"
+            className="sm:w-36 min-h-[56px] px-4 py-3.5 rounded-full border-2 border-cc-border dark:border-white/60 hover:bg-black/5 dark:hover:bg-white/10 font-body text-base font-semibold text-cc-ink flex items-center justify-center gap-2 transition-colors disabled:opacity-40"
             aria-label={`Skip or report issue for ${nextDose.medicationName}`}
           >
             <XCircle className="w-5 h-5 text-cc-muted" />
@@ -198,11 +198,11 @@ export function ElderDashboard() {
           <span className="text-xs text-cc-muted font-medium">3 doses scheduled today</span>
         </div>
 
-        <div className="space-y-3 relative before:absolute before:inset-0 before:left-4 before:w-0.5 before:bg-cc-border">
+        <div className="space-y-3 relative before:absolute before:inset-0 before:left-4 before:w-0.5 before:bg-cc-border dark:before:bg-white/30">
           {doses.map((dose) => (
             <div
               key={dose.id}
-              className="relative pl-10 flex flex-col sm:flex-row sm:items-center justify-between p-3.5 rounded-2xl bg-cc-surface border border-cc-border hover:shadow-sm transition-shadow gap-2"
+              className="relative pl-10 flex flex-col sm:flex-row sm:items-center justify-between p-3.5 rounded-2xl bg-cc-surface dark:bg-[#1B2B2B] border border-cc-border dark:border-white/50 hover:shadow-sm transition-shadow gap-2"
             >
               <div
                 className={`absolute left-2.5 top-5 w-3.5 h-3.5 rounded-full border-2 border-cc-surface ${
@@ -229,7 +229,7 @@ export function ElderDashboard() {
                 {dose.status !== 'taken' && dose.status !== 'skipped' && (
                   <button
                     onClick={() => handleMarkTaken(dose.id)}
-                    className="px-3 py-1.5 rounded-full text-xs font-semibold bg-cc-ink text-cc-ivory hover:opacity-90"
+                    className="px-3 py-1.5 rounded-full text-xs font-semibold bg-cc-ink text-cc-ivory border border-white/40 hover:opacity-90"
                   >
                     Take
                   </button>
@@ -256,8 +256,8 @@ export function ElderDashboard() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-4 rounded-2xl bg-cc-ice border border-blue-100 dark:border-blue-900/30 flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-cc-surface flex items-center justify-center text-blue-700 dark:text-blue-300 shadow-sm flex-shrink-0">
+          <div className="p-4 rounded-2xl bg-cc-ice dark:bg-[#162836] border border-blue-100 dark:border-white/40 flex items-start gap-3">
+            <div className="w-10 h-10 rounded-xl bg-cc-surface dark:bg-[#1B2B2B] border border-cc-border dark:border-white/40 flex items-center justify-center text-blue-700 dark:text-blue-300 shadow-sm flex-shrink-0">
               <Calendar className="w-5 h-5" />
             </div>
             <div>
@@ -272,8 +272,8 @@ export function ElderDashboard() {
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl bg-cc-mist border border-green-100 dark:border-green-900/30 flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-cc-surface flex items-center justify-center text-green-800 dark:text-green-300 shadow-sm flex-shrink-0">
+          <div className="p-4 rounded-2xl bg-cc-mist dark:bg-[#162E2E] border border-green-100 dark:border-white/40 flex items-start gap-3">
+            <div className="w-10 h-10 rounded-xl bg-cc-surface dark:bg-[#1B2B2B] border border-cc-border dark:border-white/40 flex items-center justify-center text-green-800 dark:text-green-300 shadow-sm flex-shrink-0">
               <Calendar className="w-5 h-5" />
             </div>
             <div>
@@ -291,9 +291,9 @@ export function ElderDashboard() {
       </SurfaceCard>
 
       {/* ONE-TAP NEED HELP BANNER */}
-      <div className="p-6 rounded-card bg-cc-lemon/30 dark:bg-yellow-950/20 border-2 border-cc-lemon flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="p-6 rounded-card bg-cc-lemon/30 dark:bg-yellow-950/20 border-2 border-cc-lemon dark:border-white/60 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-full bg-cc-ink text-cc-lemon flex items-center justify-center flex-shrink-0">
+          <div className="w-12 h-12 rounded-full bg-cc-ink text-cc-lemon border border-white/40 flex items-center justify-center flex-shrink-0">
             <HelpCircle className="w-7 h-7" />
           </div>
           <div>
@@ -306,7 +306,7 @@ export function ElderDashboard() {
 
         <Link
           to="/assistance"
-          className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-cc-ink text-cc-ivory font-headline text-base font-bold shadow-md hover:opacity-90 text-center flex-shrink-0"
+          className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-cc-ink text-cc-ivory border border-white/50 font-headline text-base font-bold shadow-md hover:opacity-90 text-center flex-shrink-0"
         >
           Open Need Help
         </Link>

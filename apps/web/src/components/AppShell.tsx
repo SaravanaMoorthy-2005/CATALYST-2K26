@@ -18,7 +18,7 @@ export function AppShell({ children, currentRole = 'owner', rightPanel }: AppShe
 
   return (
     <div
-      className={`min-h-screen flex flex-col bg-cc-ivory text-cc-ink transition-colors duration-200 ${
+      className={`min-h-screen flex flex-col bg-cc-ivory dark:bg-[#0F1A1A] text-cc-ink dark:text-[#F5F5F5] transition-colors duration-200 ${
         isLargeText ? 'text-lg' : 'text-base'
       }`}
     >
@@ -35,7 +35,7 @@ export function AppShell({ children, currentRole = 'owner', rightPanel }: AppShe
               className="fixed inset-0 bg-black/40 backdrop-blur-sm"
               onClick={() => setMobileNavOpen(false)}
             />
-            <div className="relative z-10 w-64 bg-cc-surface h-full shadow-2xl">
+            <div className="relative z-10 w-64 bg-cc-surface dark:bg-[#1B2B2B] h-full shadow-2xl border-r border-cc-border dark:border-white/40">
               <SidebarNav
                 currentRole={currentRole}
                 onCloseMobile={() => setMobileNavOpen(false)}
@@ -45,7 +45,7 @@ export function AppShell({ children, currentRole = 'owner', rightPanel }: AppShe
         )}
 
         {/* Main Content Area */}
-        <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
+        <div className="flex-1 flex flex-col min-w-0 overflow-y-auto bg-cc-ivory dark:bg-[#0F1A1A] transition-colors duration-200">
           <Topbar
             onToggleMobileNav={() => setMobileNavOpen(!mobileNavOpen)}
             currentLanguage={language}
@@ -54,7 +54,7 @@ export function AppShell({ children, currentRole = 'owner', rightPanel }: AppShe
             onToggleLargeText={() => setIsLargeText(!isLargeText)}
           />
 
-          <main className="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full">
+          <main className="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full bg-cc-ivory dark:bg-[#0F1A1A] text-cc-ink dark:text-[#F5F5F5] transition-colors duration-200">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               <div className={rightPanel ? 'lg:col-span-8 space-y-6' : 'lg:col-span-12 space-y-6'}>
                 {children}

@@ -64,10 +64,10 @@ export default function DashboardPage() {
                 onClick={() => setSelectedDate(day)}
                 className={`h-8 rounded-full flex flex-col items-center justify-center font-medium transition-colors relative ${
                   isSelected
-                    ? 'bg-cc-ink text-white font-bold'
+                    ? 'bg-cc-ink text-cc-ivory border border-white font-bold'
                     : isToday
                     ? 'bg-cc-lemon text-cc-ink font-bold'
-                    : 'hover:bg-black/5 text-cc-ink'
+                    : 'hover:bg-black/5 dark:hover:bg-white/10 text-cc-ink'
                 }`}
               >
                 <span>{day}</span>
@@ -91,28 +91,28 @@ export default function DashboardPage() {
         </div>
 
         <div className="space-y-2.5">
-          <div className="p-3 rounded-xl bg-cc-ivory border border-cc-border flex items-center justify-between text-xs">
+          <div className="p-3 rounded-xl bg-cc-surface dark:bg-[#162E2E] border border-cc-border dark:border-white/40 flex items-center justify-between text-xs">
             <div>
               <p className="font-bold text-cc-ink">Atorvastatin</p>
               <p className="text-cc-muted">20mg · Daily at 08:00 AM</p>
             </div>
-            <span className="px-2 py-0.5 rounded bg-cc-mint text-green-900 font-semibold">Taken</span>
+            <span className="px-2 py-0.5 rounded bg-cc-mint text-green-900 dark:text-green-200 border border-green-300 dark:border-green-800 font-semibold">Taken</span>
           </div>
 
-          <div className="p-3 rounded-xl bg-cc-ivory border border-cc-border flex items-center justify-between text-xs">
+          <div className="p-3 rounded-xl bg-cc-surface dark:bg-[#162E2E] border border-cc-border dark:border-white/40 flex items-center justify-between text-xs">
             <div>
               <p className="font-bold text-cc-ink">Metformin</p>
               <p className="text-cc-muted">500mg · Daily at 01:00 PM</p>
             </div>
-            <span className="px-2 py-0.5 rounded bg-cc-ice text-blue-900 font-semibold">Due 1 PM</span>
+            <span className="px-2 py-0.5 rounded bg-cc-ice text-blue-900 dark:text-blue-200 border border-blue-200 dark:border-blue-800 font-semibold">Due 1 PM</span>
           </div>
 
-          <div className="p-3 rounded-xl bg-cc-ivory border border-cc-border flex items-center justify-between text-xs">
+          <div className="p-3 rounded-xl bg-cc-surface dark:bg-[#162E2E] border border-cc-border dark:border-white/40 flex items-center justify-between text-xs">
             <div>
               <p className="font-bold text-cc-ink">Lisinopril</p>
               <p className="text-cc-muted">10mg · Daily at 08:00 PM</p>
             </div>
-            <span className="px-2 py-0.5 rounded bg-gray-100 text-cc-muted font-semibold">Due 8 PM</span>
+            <span className="px-2 py-0.5 rounded bg-stone-100 dark:bg-stone-800 text-cc-muted border border-cc-border dark:border-white/30 font-semibold">Due 8 PM</span>
           </div>
         </div>
       </SurfaceCard>
@@ -140,12 +140,12 @@ export default function DashboardPage() {
   return (
     <AppShell currentRole={currentRole} rightPanel={RightUtilityPanel}>
       {/* ROLE SWITCHER DEMO BANNER */}
-      <div className="p-3 bg-white/90 border border-cc-border rounded-2xl flex flex-wrap items-center justify-between gap-3 shadow-xs">
+      <div className="p-3 bg-cc-surface dark:bg-[#1B2B2B] border border-cc-border dark:border-white/50 rounded-2xl flex flex-wrap items-center justify-between gap-3 shadow-xs">
         <div className="flex items-center gap-2">
           <span className="text-xs font-bold text-cc-muted uppercase tracking-wider">
             Active Role View:
           </span>
-          <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-cc-ink text-white capitalize">
+          <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-cc-ink text-cc-ivory border border-white/40 capitalize">
             {currentRole}
           </span>
         </div>
@@ -153,30 +153,30 @@ export default function DashboardPage() {
         <div className="flex items-center gap-1.5" role="group" aria-label="Role Switcher">
           <button
             onClick={() => handleRoleChange('owner')}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors ${
+            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors border ${
               currentRole === 'owner'
-                ? 'bg-cc-ink text-cc-lemon'
-                : 'bg-cc-ivory text-cc-ink hover:bg-black/5'
+                ? 'bg-cc-ink text-cc-lemon border-white/50'
+                : 'bg-cc-surface dark:bg-[#162E2E] text-cc-ink dark:text-white border-cc-border dark:border-white/30 hover:bg-black/5 dark:hover:bg-white/10'
             }`}
           >
             CareDay (Elder)
           </button>
           <button
             onClick={() => handleRoleChange('caregiver')}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors ${
+            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors border ${
               currentRole === 'caregiver'
-                ? 'bg-cc-ink text-cc-lemon'
-                : 'bg-cc-ivory text-cc-ink hover:bg-black/5'
+                ? 'bg-cc-ink text-cc-lemon border-white/50'
+                : 'bg-cc-surface dark:bg-[#162E2E] text-cc-ink dark:text-white border-cc-border dark:border-white/30 hover:bg-black/5 dark:hover:bg-white/10'
             }`}
           >
             CarePulse (Caregiver)
           </button>
           <button
             onClick={() => handleRoleChange('family')}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors ${
+            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors border ${
               currentRole === 'family'
-                ? 'bg-cc-ink text-cc-lemon'
-                : 'bg-cc-ivory text-cc-ink hover:bg-black/5'
+                ? 'bg-cc-ink text-cc-lemon border-white/50'
+                : 'bg-cc-surface dark:bg-[#162E2E] text-cc-ink dark:text-white border-cc-border dark:border-white/30 hover:bg-black/5 dark:hover:bg-white/10'
             }`}
           >
             Family Overview

@@ -22,7 +22,7 @@ export function SurfaceCard({
   return (
     <Tag
       className={cn(
-        'rounded-card bg-cc-surface shadow-card border border-cc-border',
+        'rounded-card bg-cc-surface dark:bg-[#1B2B2B] shadow-card border border-cc-border dark:border-white/50 text-cc-ink dark:text-[#F5F5F5] transition-colors',
         padding,
         className,
       )}

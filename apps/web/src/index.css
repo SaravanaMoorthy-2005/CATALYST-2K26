@@ -34,11 +34,43 @@
   --cc-ice: #162836;
   --cc-mint: #163628;
   --cc-surface: #1B2B2B;
-  --cc-muted: #9CA3AF;
-  --cc-muted-text: #9CA3AF;
-  --cc-border: rgba(255, 255, 255, 0.12);
+  --cc-muted: #D1D5DB;
+  --cc-muted-text: #D1D5DB;
+  --cc-border: rgba(255, 255, 255, 0.45);
   --cc-shadow-card: 0 8px 28px rgba(0, 0, 0, 0.40);
   --cc-shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.60);
+}
+
+/* Explicit global dark theme overrides to ensure all areas, especially <main>, switch completely to dark */
+html.dark,
+html.dark body,
+html.dark #root,
+html.dark main {
+  background-color: #0F1A1A !important;
+  color: #F5F5F5 !important;
+}
+
+/* White outline / border for text in dark mode */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  text-shadow: 
+    -0.5px -0.5px 0 rgba(255, 255, 255, 0.35),
+     0.5px -0.5px 0 rgba(255, 255, 255, 0.35),
+    -0.5px  0.5px 0 rgba(255, 255, 255, 0.35),
+     0.5px  0.5px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* White borders on all cards, inputs, buttons, and text containers in dark mode */
+.dark .rounded-card,
+.dark .rounded-2xl,
+.dark .rounded-xl,
+.dark .border,
+.dark .border-2 {
+  border-color: rgba(255, 255, 255, 0.45);
 }
 
 /* ───────────────────────────────
@@ -80,8 +112,8 @@
 }
 
 .dark .cc-glass-shell {
-  background: rgba(27, 43, 43, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(27, 43, 43, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.40);
 }
 
 @supports not (backdrop-filter: blur(16px)) {

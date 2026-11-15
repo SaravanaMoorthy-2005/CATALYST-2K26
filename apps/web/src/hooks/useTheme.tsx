@@ -2,13 +2,29 @@ import { useState, useEffect } from 'react'
 
 export type ThemeMode = 'light' | 'dark' | 'system'
 
+const THEME_EVENT = 'careguardian_theme_changed'
+
+function getInitialTheme(): ThemeMode {
+  if (typeof window !== 'undefined') {
+    return (localStorage.getItem('careguardian_theme') as ThemeMode) || 'light'
+  }
+  return 'light'
+}
+
 export function useTheme() {
-  const [mode, setMode] = useState<ThemeMode>(() => {
-    if (typeof window !== 'undefined') {
-      return (localStorage.getItem('careguardian_theme') as ThemeMode) || 'light'
+  const [mode, setModeState] = useState<ThemeMode>(getInitialTheme)
+
+  useEffect(() => {
+    const handleThemeChange = (e: Event) => {
+      const customEvent = e as CustomEvent<ThemeMode>
+      if (customEvent.detail && customEvent.detail !== mode) {
+        setModeState(customEvent.detail)
+      }
     }
-    return 'light'
-  })
+
+    window.addEventListener(THEME_EVENT, handleThemeChange)
+    return () => window.removeEventListener(THEME_EVENT, handleThemeChange)
+  }, [mode])
 
   useEffect(() => {
     const root = document.documentElement
@@ -37,8 +53,17 @@ export function useTheme() {
     localStorage.setItem('careguardian_theme', mode)
   }, [mode])
 
+  const setMode = (newMode: ThemeMode) => {
+    setModeState(newMode)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('careguardian_theme', newMode)
+      window.dispatchEvent(new CustomEvent(THEME_EVENT, { detail: newMode }))
+    }
+  }
+
   const toggleTheme = () => {
-    setMode((prev) => (prev === 'light' ? 'dark' : 'light'))
+    const next = mode === 'light' ? 'dark' : 'light'
+    setMode(next)
   }
 
   return { mode, setMode, toggleTheme, isDark: mode === 'dark' }
